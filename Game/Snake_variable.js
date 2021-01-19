@@ -9,6 +9,8 @@ const bRows = 33;
 const bCols = 25;
 const initLength = 17; //max = 17
 const moveTime = 6;
+const FoodAppearTime = 100;
+const FoodLastTime = 300;
 const minReactDistForTouch = 30;
 
 let graph = []; //graph[row][col]
@@ -21,6 +23,13 @@ let player = {
     name : "Anonymous Snake",
 
 }
+
+let gaming = {
+    ended : false,
+    interval1 : 0,
+    interval2 : 0
+}
+
 
 let snake = {
     length : initLength,
@@ -40,33 +49,58 @@ let snake = {
                     ctx.fillRect((c + 0.5*rowConst)*bWid, (r + 0.5*colConst)*bHei, bWid, bHei);
                 }
             }
+    },
+    eatSelf() { //call when body moved in data, but head haven't
+        if (graph[snake.posHeadR][snake.posHeadC] > 0) {
+            gaming.ended = true;
+        }
+    }, //self-eat
+    eatFood() { //food eat
+        if (graph[snake.posHeadR][snake.posHeadC] < 0) { //yes FOOD!!
+            for (let r = 0; r < bRows; r++)
+                for (let c = 0; c < bCols; c++)
+                    if(graph[r][c] > 0) graph[r][c]++;
+
+            let ind;
+            for(ind=0; ind<Foods.length; ind++)
+                if( Foods[ind].col === snake.posHeadC && Foods[ind].row === snake.posHeadR ) break;
+
+            graph[ Foods[ind].row ][ Foods[ind].col ] = 0;
+            Foods[ind].addScore();
+            Foods[ind].vanish();
+
+            snake.length++;
+        }
     }
 }
 
 let controls = {
-    key : 0,
     touchStartX : 0,
     touchStartY : 0,
     touchEndX : 0,
     touchEndY : 0,
     minReactDist : minReactDistForTouch,
-    keyReact() {
-        switch( this.key )
+    keyReact( key ) {
+        switch( key )
         {
             case 38:
+                if( snake.heading === "down" ) break;
                 snake.heading = "up";
                 break;
             case 40:
+                if( snake.heading === "up" ) break;
                 snake.heading = "down";
                 break;
             case 37:
+                if( snake.heading === "right" ) break;
                 snake.heading = "left";
                 break;
             case 39:
+                if( snake.heading === "left" ) break;
                 snake.heading = "right";
                 break;
             default:
-                console.log(this.key);
+                console.log(key);
         }
     },
     touchReact() {
@@ -79,31 +113,32 @@ let controls = {
         vecUpToDown *= 0.75;
 
         if( Math.abs(vecUpToDown) > Math.abs( vecLeftToRight ) ) {
-            if( vecUpToDown > 0 ) controls.key = 40;
-            else controls.key = 38;
+            let key;
+            if( vecUpToDown > 0 ) key = 40;
+            else key = 38;
         }
         else {
-            if( vecLeftToRight > 0 ) controls.key = 39;
-            else controls.key = 37;
+            if( vecLeftToRight > 0 ) key = 39;
+            else key = 37;
         }
 
-        controls.keyReact();
+        controls.keyReact( key );
     },
 
     haveControl() {
         //keyboard
-        window.addEventListener("keydown", function(e) { controls.key = e.keyCode; controls.keyReact(); });
-        window.addEventListener("keyup", function(e) { this.key = 0; });
+        window.addEventListener("keydown", function(e) { controls.keyReact(e.keyCode); });
+        //window.addEventListener("keyup", function(e) { });
         //touches
         window.addEventListener("touchstart", function (e) { controls.touchStartX = e.pageX; controls.touchStartY = e.pageY; });
         window.addEventListener("touchend", function (e) { controls.touchEndX = e.pageX; controls.touchEndY = e.pageY; controls.touchReact(); });
 
     },
     //button
-    buttonReactUp() { controls.key = 38; controls.keyReact(); },
-    buttonReactDown() { controls.key = 40; controls.keyReact(); },
-    buttonReactLeft() { controls.key = 37; controls.keyReact(); },
-    buttonReactRight() { controls.key = 39; controls.keyReact(); }
+    buttonReactUp() { controls.keyReact(38); },
+    buttonReactDown() { controls.keyReact(40); },
+    buttonReactLeft() { controls.keyReact(37); },
+    buttonReactRight() { controls.keyReact(39); }
 }
 
 

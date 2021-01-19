@@ -26,7 +26,7 @@ function updateData()
     timeNode++; //increase every 0.02s
     if( timeNode%moveTime === 0 ) {
         //snake go
-        switch( snake.heading ) //head
+        switch( snake.heading ) //head move in (snake obj)
         {
             case "up":
                 snake.posHeadR = (snake.posHeadR - 1 + bRows) % bRows;
@@ -41,15 +41,28 @@ function updateData()
                 snake.posHeadC = (snake.posHeadC + 1 + bCols ) % bCols;
                 break;
         }
-        //body
+
+        snake.eatFood();
+        //body move in graph[][]
         for(let r=0; r<bRows; r++)
             for(let c=0; c<bCols; c++)
                 if( graph[r][c]>0 ) graph[r][c]--;
 
-        graph[ snake.posHeadR ][ snake.posHeadC ] = snake.length;
+        snake.eatSelf();
+        graph[ snake.posHeadR ][ snake.posHeadC ] = snake.length; //head move in graph[][]
 
+    }
 
+    if( timeNode % 10 === 0)
+    {
+        Foods.forEach( function (c) {
+            c.recordTime();
+            c.checkTime();
+        })
+    }
 
+    if( timeNode % FoodAppearTime === 0 ) {
+        generateFood();
     }
 }
 
@@ -60,12 +73,18 @@ function updateRender()
         clearMainCanvas();
     }
 
-    if( timeNode%moveTime === 0 )
+    if( timeNode%moveTime === 0 ) //Food
+    {
+        Foods.forEach( function (c) { c.renderme(); });
+    }
+
+    if( timeNode%moveTime === 0 ) //Snake
     {
 
         snake.renderMe(0, 0);
     }
 
+    if( gaming.ended ) gameEnd();
 }
 
 function clearMainCanvas() {
@@ -79,10 +98,17 @@ function gameStart()
 
     initGame();
     controls.haveControl();
-    setInterval(updateData, 20);
-    setInterval(updateRender, 20);
+    gaming.interval1 = setInterval(updateData, 20);
+    gaming.interval2 = setInterval(updateRender, 20);
 
 }
+
+function gameEnd() {
+    clearInterval( gaming.interval1 );
+    clearInterval( gaming.interval2 );
+
+}
+
 
 
 gameStart();
