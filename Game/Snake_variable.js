@@ -5,8 +5,8 @@ var ctx = canvas.getContext("2d");
 //ctx.fillStyle = "red"; ctx.fillRect(0,0,12,12 );
 const bRows = 33;
 const bCols = 25;
-const bWid = defaultWid/bCols; //Block Width
-const bHei = bWid; //Block Height
+const bWid = 28; //Block Width
+const bHei = 28; //Block Height
 const initLength = 3; //max = 17
 const moveTime = 6;
 const FoodAppearTime = 100;
