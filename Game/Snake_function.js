@@ -54,35 +54,34 @@ function updateData()
     }
 
     if( timeNode % 10 === 0)
-    {
         Foods.forEach( function (c) {
             c.recordTime();
             c.checkTime();
         })
-    }
 
-    if( timeNode % FoodAppearTime === 0 ) {
+
+    if( timeNode % FoodAppearTime === 0 )
         generateFood();
-    }
+
+    if( timeNode%GreateAppearTime === 0 )
+        GreatFood.generate();
 }
 
 function updateRender()
 {
     if( timeNode%moveTime === 0 ) //May need to adjust.  rerender background
-    {
         clearMainCanvas();
-    }
 
     if( timeNode%moveTime === 0 ) //Food
-    {
         Foods.forEach( function (c) { c.renderme(); });
-    }
+
 
     if( timeNode%moveTime === 0 ) //Snake
-    {
-
         snake.renderMe(0, 0);
-    }
+
+
+    if( timeNode%moveTime === 0) player.renderScore();
+    if( timeNode%6 === 0 ) clock.renderMe_JudgeEnd();
 
     if( gaming.ended ) gameEnd();
 }
@@ -100,6 +99,8 @@ function gameStart()
     controls.haveControl();
     gaming.interval1 = setInterval(updateData, 20);
     gaming.interval2 = setInterval(updateRender, 20);
+
+    clock.startClock();
 
 }
 

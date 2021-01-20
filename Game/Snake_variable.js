@@ -7,10 +7,11 @@ const bWid = 12; //Block Width
 const bHei = 12; //Block Height
 const bRows = 33;
 const bCols = 25;
-const initLength = 17; //max = 17
+const initLength = 3; //max = 17
 const moveTime = 6;
 const FoodAppearTime = 100;
 const FoodLastTime = 300;
+const GreateAppearTime = 700;
 const minReactDistForTouch = 30;
 
 let graph = []; //graph[row][col]
@@ -20,8 +21,18 @@ let timeNode = 0;
 let player = {
     credit : 0,
     gpa : 0,
+    total_cga : 0,
     name : "Anonymous Snake",
 
+    renderScore() {
+        ctx.font = "15px Comic Sans MS";
+        ctx.fillStyle = "black";
+        ctx.fillText("cga", bWid * 4, bHei * bRows+20 );
+        ctx.fillText( player.gpa.toFixed(5).toString(), bWid * 3, bHei * bRows+20+25 );
+
+        ctx.fillText("total credit", bWid * 11, bHei * bRows+20 );
+        ctx.fillText( player.credit.toString(), bWid * 12, bHei * bRows+20+25 );
+    }
 }
 
 let gaming = {
@@ -112,8 +123,8 @@ let controls = {
         let vecLeftToRight = controls.touchEndX - controls.touchStartX;
         vecUpToDown *= 0.75;
 
+        let key;
         if( Math.abs(vecUpToDown) > Math.abs( vecLeftToRight ) ) {
-            let key;
             if( vecUpToDown > 0 ) key = 40;
             else key = 38;
         }

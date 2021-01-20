@@ -1,7 +1,7 @@
 let Foods = [];
 
-//1, 2, 3 ->A
-//4, 5 ->B
+//1, 2 ->A
+//3, 4, 5 ->B
 //6 ->C
 function generateFood()
 {
@@ -10,10 +10,10 @@ function generateFood()
     let seed = Math.floor( Math.random()*6 ) + 1;
     switch( seed )
     {
-        case 1: case 2: case 3:
+        case 1: case 2:
             ret = new AFood();
             break;
-        case 4: case 5:
+        case 3: case 4: case 5:
             ret = new BFood();
             break;
         case 6:
@@ -85,15 +85,20 @@ class Food {
                 Foods.splice( index, 1);
                 break;
             }
-        console.log( Foods.length );
+        //console.log( Foods.length );
     };
     renderme() {
+        if( this.credit === 4 ) { this.specialRender(); return; }
         ctx.beginPath();
         ctx.arc(bWid * (this.col + 0.5), bHei * (this.row + 0.5), 0.5 * bWid, 0, 2 * Math.PI);
         ctx.fillStyle = this.style;
         ctx.fill();
     }
-    addScore() {};
+    addScore() {
+        player.credit += this.credit;
+        player.total_cga += this.cga * this.credit;
+        if( player.credit ) player.gpa = player.total_cga/player.credit;
+    };
 }
 
 class AFood extends Food {
@@ -117,5 +122,33 @@ class CFood extends Food {
         super();
         this.cga = 2.0;
         this.style = "#FF3EFF";
+    }
+}
+
+class GreatFood extends Food {
+    constructor(row, col) {
+        super();
+        this.cga = 4.3;
+        this.credit = 4;
+        this.style = "#FF2F2F";
+        this.row = row;
+        this.col = col;
+    }
+
+    static generate() {
+        let temp = generateFood();
+        let row = temp.row;
+        let col = temp.col;
+        temp.vanish();
+
+        let ret = new GreatFood(row, col);
+        ret.appear();
+    }
+
+    specialRender() {
+        ctx.beginPath();
+        ctx.arc(bWid * (this.col + 0.5), bHei * (this.row + 0.5), 0.75 * bWid, 0, 2 * Math.PI);
+        ctx.fillStyle = this.style;
+        ctx.fill();
     }
 }
