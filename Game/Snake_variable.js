@@ -141,10 +141,10 @@ let controls = {
         window.addEventListener("keydown", function(e) { controls.keyReact(e.keyCode); });
         //window.addEventListener("keyup", function(e) { });
         //touches
-        window.addEventListener("touchstart", function (e) { e.preventDefault(); controls.touchStartX = e.pageX; controls.touchStartY = e.pageY; });
-        window.addEventListener("touchend", function (e) { e.preventDefault(); controls.touchEndX = e.pageX; controls.touchEndY = e.pageY; controls.touchReact(); });
+        window.addEventListener("touchstart", function (e) { /*e.preventDefault();*/ controls.touchStartX = e.pageX; controls.touchStartY = e.pageY; });
+        window.addEventListener("touchend", function (e) { /*e.preventDefault();*/ controls.touchEndX = e.pageX; controls.touchEndY = e.pageY; controls.touchReact(); });
 
-        document.body.addEventListener("touchmove", function(e){ e.preventDefault(); });
+        document.body.addEventListener("touchmove", function(e){ /*e.preventDefault();*/ });
     },
     //button
    /* buttonReactUp() { controls.keyReact(38); },
@@ -161,9 +161,6 @@ gameContainer.addEventListener("touchstart", function (event) {
 gameContainer.addEventListener("touchmove", function (event) {
     event.preventDefault();
 });
-
-gameContainer.addEventListener("touchend", function (event) {
-    });
 
 
 

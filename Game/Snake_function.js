@@ -93,7 +93,7 @@ function clearMainCanvas() {
 
 function gameStart()
 {
-    document.body.addEventListener('touchmove', function(event) { event.preventDefault(); }, false);
+    //document.body.addEventListener('touchmove', function(event) { event.preventDefault(); }, false);
 
     initGame();
     controls.haveControl();
