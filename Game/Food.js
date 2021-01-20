@@ -69,6 +69,7 @@ class Food {
 
         this.row = 0;
         this.col = 0;
+        this.onFlash = true;
     }
 
     recordTime() { this.counting += 10; }; //10 times
@@ -92,7 +93,12 @@ class Food {
         ctx.beginPath();
         ctx.arc(bWid * (this.col + 0.5), bHei * (this.row + 0.5), 0.5 * bWid, 0, 2 * Math.PI);
         ctx.fillStyle = this.style;
-        ctx.fill();
+
+        if( FoodLastTime - this.counting <= FoodFlashingTime ) {
+            if( this.onFlash === false ) { ctx.fill(); this.onFlash = true; }
+            else this.onFlash = false;
+        }
+        else ctx.fill();
     }
     addScore() {
         player.credit += this.credit;
@@ -146,9 +152,17 @@ class GreatFood extends Food {
     }
 
     specialRender() {
+        ctx.lineWidth = 1;
         ctx.beginPath();
-        ctx.arc(bWid * (this.col + 0.5), bHei * (this.row + 0.5), 0.75 * bWid, 0, 2 * Math.PI);
+        ctx.arc(bWid * (this.col + 0.5), bHei * (this.row + 0.5), 0.70 * bWid, 0, 2 * Math.PI);
         ctx.fillStyle = this.style;
         ctx.fill();
+
+        ctx.moveTo(bWid * 2,bHei * bRows+220);
+        ctx.lineTo(bWid * 2 + (FoodLastTime - this.counting)/FoodLastTime * 17*bWid, bHei * bRows+220 );
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 20;
+        ctx.stroke();
+        ctx.lineWidth = 2;
     }
 }

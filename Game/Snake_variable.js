@@ -11,6 +11,7 @@ const initLength = 3; //max = 17
 const moveTime = 6;
 const FoodAppearTime = 100;
 const FoodLastTime = 300;
+const FoodFlashingTime = 50;
 const GreateAppearTime = 700;
 const minReactDistForTouch = 30;
 
