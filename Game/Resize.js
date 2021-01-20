@@ -10,7 +10,7 @@ function resize()
     b = Math.floor(b);
 
     var can = document.getElementById("Canvas_main");
-    can.setAttribute("width", b*bCols );
+    can.setAttribute("width", Hwid );
     can.setAttribute("height", b*bRows + 75 );
 }
 
