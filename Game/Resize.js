@@ -2,8 +2,8 @@ resize();
 
 function resize()
 {
-    const Hwid = document.body.clientWidth;
-    const Hhei = document.body.clientHeight;
+    const Hwid = window.screen.width;
+    const Hhei = window.screen.height;
 
     let b = Math.min( (0.75 * Hwid) / bRows, (0.75 * Hhei) / bCols );
     console.log((0.75 * Hwid) / bRows, (0.75 * Hhei) / bCols );
