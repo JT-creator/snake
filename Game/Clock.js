@@ -1,3 +1,4 @@
+console.log("clock here");
 const GamingSpan = 1; //min
 
 let clock = {
@@ -18,6 +19,7 @@ let clock = {
 
         ctx.fillText(   leftMin.toString() + "min " + leftSec.toString() + "sec", bWid * 12, bHei * bRows+80 );
         if( leftMin <= 0 && leftSec <= 0 ) gameEnd();
+        if( leftMin < 0 ) gameEnd();
     },
     startClock() { this.startTime = new Date(); }
 }
