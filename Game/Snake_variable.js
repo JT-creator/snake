@@ -25,13 +25,13 @@ let player = {
     name : "Anonymous Snake",
 
     renderScore() {
-        ctx.font = "15px Comic Sans MS";
+        ctx.font = "30px Comic Sans MS";
         ctx.fillStyle = "black";
-        ctx.fillText("cga", bWid * 4, bHei * bRows+20 );
-        ctx.fillText( player.gpa.toFixed(5).toString(), bWid * 3, bHei * bRows+20+25 );
+        ctx.fillText("cga", bWid * 3, bHei * bRows+50 );
+        ctx.fillText( player.gpa.toFixed(5).toString(), bWid * 2, bHei * bRows+50+40 );
 
-        ctx.fillText("total credit", bWid * 11, bHei * bRows+20 );
-        ctx.fillText( player.credit.toString(), bWid * 12, bHei * bRows+20+25 );
+        ctx.fillText("total credit", bWid * 9, bHei * bRows+50 );
+        ctx.fillText( player.credit.toString(), bWid * 10, bHei * bRows+50+40 );
     }
 }
 
@@ -152,6 +152,18 @@ let controls = {
     buttonReactLeft() { controls.keyReact(37); },
     buttonReactRight() { controls.keyReact(39); } */
 }
+
+var gameContainer = document.querySelector(".game-container");
+gameContainer.addEventListener("touchstart", function (event) {
+    event.preventDefault();
+});
+
+gameContainer.addEventListener("touchmove", function (event) {
+    event.preventDefault();
+});
+
+gameContainer.addEventListener("touchend", function (event) {
+    });
 
 
 
