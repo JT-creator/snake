@@ -1,4 +1,4 @@
-
+let defaultWid = 700;
 var canvas = document.getElementById("Canvas_main");
 var ctx = canvas.getContext("2d");
 
