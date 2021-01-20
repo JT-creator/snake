@@ -143,7 +143,9 @@ let controls = {
         //touches
         window.addEventListener("touchstart", function (e) { controls.touchStartX = e.pageX; controls.touchStartY = e.pageY; });
         window.addEventListener("touchend", function (e) { controls.touchEndX = e.pageX; controls.touchEndY = e.pageY; controls.touchReact(); });
+
         document.body.addEventListener("touchmove", function(e){ e.preventDefault(); });
+        ontouchmove( function(e){e.preventDefault();} );
     },
     //button
    /* buttonReactUp() { controls.keyReact(38); },
