@@ -99,6 +99,7 @@ let snake = {
             case "up":
                 ctx.fillRect(c*bWid, r*bHei + (1 - fac)*bHei, bWid, Math.min(bHei, bHei*bRows - (r*bHei + (1 - fac)*bHei) ) );
 
+                if( r*bHei + (1 - fac)*bHei + 0.35*bHei > bHei * bRows ) break;
                 ctx.fillStyle = "black";
                 ctx.beginPath();
                 ctx.arc((c+0.3)*bWid, r*bHei + (1 - fac)*bHei + 0.35*bHei, 0.1*bWid, 0, 2 * Math.PI);
@@ -110,9 +111,45 @@ let snake = {
                 //ctx.stroke();
                 ctx.fill();
                 break;
-            case "down": ctx.fillRect(c*bWid, r*bHei - (1-fac)*bHei, bWid, bHei); break;
-            case "left": ctx.fillRect(c*bWid + (1-fac)*bWid, r*bHei, Math.min(bWid, bWid*bCols-(c*bWid + (1-fac)*bWid) ), bHei ); break;
-            case "right": ctx.fillRect(c*bWid - (1-fac)*bWid, r*bHei, bWid, bHei); break; //canvas boarder did the rest
+            case "down":
+                ctx.fillRect(c*bWid, r*bHei - (1-fac)*bHei, bWid, bHei);
+                ctx.fillStyle = "black";
+                ctx.beginPath();
+                ctx.arc((c+0.3)*bWid, r*bHei - (1-fac)*bHei + 0.65*bHei, 0.1*bWid, 0, 2 * Math.PI);
+                //ctx.stroke();
+                ctx.fill();
+
+                ctx.beginPath();
+                ctx.arc((c+0.7)*bWid, r*bHei - (1-fac)*bHei + 0.65*bHei, 0.1*bWid, 0, 2 * Math.PI);
+                //ctx.stroke();
+                ctx.fill();
+                break;
+            case "left":
+                ctx.fillRect(c*bWid + (1-fac)*bWid, r*bHei, Math.min(bWid, bWid*bCols-(c*bWid + (1-fac)*bWid) ), bHei );
+                ctx.fillStyle = "black";
+                ctx.beginPath();
+                ctx.arc(c*bWid + (1-fac)*bWid + 0.35*bWid, r*bHei + 0.3*bHei, 0.1*bWid, 0, 2 * Math.PI);
+                //ctx.stroke();
+                ctx.fill();
+
+                ctx.beginPath();
+                ctx.arc(c*bWid + (1-fac)*bWid + 0.35*bWid, r*bHei + 0.7*bHei, 0.1*bWid, 0, 2 * Math.PI);
+                //ctx.stroke();
+                ctx.fill();
+                break;
+            case "right":
+                ctx.fillRect(c*bWid - (1-fac)*bWid, r*bHei, bWid, bHei);
+                ctx.fillStyle = "black";
+                ctx.beginPath();
+                ctx.arc(c*bWid - (1-fac)*bWid + 0.65*bWid, r*bHei + 0.3*bHei, 0.1*bWid, 0, 2 * Math.PI);
+                //ctx.stroke();
+                ctx.fill();
+
+                ctx.beginPath();
+                ctx.arc(c*bWid - (1-fac)*bWid + 0.65*bWid, r*bHei + 0.7*bHei, 0.1*bWid, 0, 2 * Math.PI);
+                //ctx.stroke();
+                ctx.fill();
+                break; //canvas boarder did the rest
         }
 
      /*   if( graph[or][oc] <= 0 ) {
@@ -138,6 +175,8 @@ let snake = {
                 if (Foods[ind].col === snake.posHeadC && Foods[ind].row === snake.posHeadR) break;
 
             graph[Foods[ind].row][Foods[ind].col] = 0;
+            console.log("here "+ind);
+            reportCheck.restart();
             Foods[ind].addScore();
             Foods[ind].vanish();
 
@@ -149,6 +188,7 @@ let snake = {
             for (let ind = 0; ind < Foods.length; ind++)
                 if (Foods[ind].credit === 4)
                     if (Math.abs(snake.posHeadR - Foods[ind].row) === 1 && Math.abs(snake.posHeadC - Foods[ind].col) === 1) {
+                        reportCheck.restart();
                         Foods[ind].addScore();
                         Foods[ind].vanish();
                         snake.length++;

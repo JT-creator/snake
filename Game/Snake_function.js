@@ -81,6 +81,8 @@ function updateRender()
 {
     if( timeNode%moveTime === 0 ) //May need to adjust.  rerender background
         clearMainCanvas();
+    if( timeNode%3 === 0)
+        reportCheck.renderMe();
 
     if( timeNode%moveTime === 0 ) //Food
         Foods.forEach( function (c) { c.renderme(); });
@@ -112,7 +114,7 @@ function gameStart()
     gaming.interval2 = setInterval(updateRender, 20);
 
     clock.startClock();
-
+    reportCheck.restart();
 }
 
 function gameEnd() {
