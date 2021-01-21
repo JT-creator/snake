@@ -17,7 +17,7 @@ let reportCheck = {
         if( !this.showing ) return;
         console.log("now");////////////////////
         this.ele.setAttribute("src", "../Game/a/frame_"+this.i+"_delay-0.05s.jpg");
-        ctx.drawImage(this.ele, bCols*bWid - 170, bRows*bHei + 50, 100, 70);
+        ctx.drawImage(this.ele, bCols*bWid - 170, bRows*bHei + 50, 150, 105);
     }
 }
 

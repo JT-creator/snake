@@ -81,7 +81,7 @@ function updateRender()
 {
     if( timeNode%moveTime === 0 ) //May need to adjust.  rerender background
         clearMainCanvas();
-    if( timeNode%3 === 0)
+    if( timeNode%2 === 0)
         reportCheck.renderMe();
 
     if( timeNode%moveTime === 0 ) //Food
