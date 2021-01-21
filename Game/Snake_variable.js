@@ -96,7 +96,20 @@ let snake = {
         ctx.fillStyle = "red";
         switch( snake.renderHeading )
         {
-            case "up": ctx.fillRect(c*bWid, r*bHei + (1 - fac)*bHei, bWid, Math.min(bHei, bHei*bRows - (r*bHei + (1 - fac)*bHei) ) ); break;
+            case "up":
+                ctx.fillRect(c*bWid, r*bHei + (1 - fac)*bHei, bWid, Math.min(bHei, bHei*bRows - (r*bHei + (1 - fac)*bHei) ) );
+
+                ctx.fillStyle = "black";
+                ctx.beginPath();
+                ctx.arc((c+0.3)*bWid, r*bHei + (1 - fac)*bHei + 0.35*bHei, 0.1*bWid, 0, 2 * Math.PI);
+                //ctx.stroke();
+                ctx.fill();
+
+                ctx.beginPath();
+                ctx.arc((c+0.7)*bWid, r*bHei + (1 - fac)*bHei + 0.35*bHei, 0.1*bWid, 0, 2 * Math.PI);
+                //ctx.stroke();
+                ctx.fill();
+                break;
             case "down": ctx.fillRect(c*bWid, r*bHei - (1-fac)*bHei, bWid, bHei); break;
             case "left": ctx.fillRect(c*bWid + (1-fac)*bWid, r*bHei, Math.min(bWid, bWid*bCols-(c*bWid + (1-fac)*bWid) ), bHei ); break;
             case "right": ctx.fillRect(c*bWid - (1-fac)*bWid, r*bHei, bWid, bHei); break; //canvas boarder did the rest
