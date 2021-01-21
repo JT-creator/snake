@@ -4,7 +4,15 @@ function renderBoarders() { //create Block boarders
     ctx.lineWidth = 2;
     for(let r=0; r<bRows; r++)
         for(let c=0; c<bCols; c++)
+        {
+            if( r === snake.posHeadR || c === snake.posHeadC ) {
+                ctx.lineWidth = 2.8;
+                ctx.strokeRect(c * bWid, r * bHei, bWid, bHei);
+                ctx.lineWidth = 2;
+            }
             ctx.strokeRect(c * bWid, r * bHei, bWid, bHei);
+        }
+
 }
 
 function initGame(){
@@ -42,6 +50,7 @@ function updateData()
                 snake.posHeadC = (snake.posHeadC + 1 + bCols ) % bCols;
                 break;
         }
+        snake.renderHeading = snake.heading;
 
         snake.eatFood();
         //body move in graph[][]
@@ -80,6 +89,7 @@ function updateRender()
     if( timeNode%moveTime === 0 ) //Snake
         snake.renderMe(0, 0);
 
+    snake.renderHeadTail();
 
     if( timeNode%moveTime === 0) player.renderScore();
     if( timeNode%6 === 0 ) clock.renderMe_JudgeEnd();

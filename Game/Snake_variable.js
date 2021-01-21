@@ -7,7 +7,7 @@ const bRows = 33;
 const bCols = 25;
 const bWid = 28; //Block Width
 const bHei = 28; //Block Height
-const initLength = 3; //max = 17
+const initLength = 17; //max = 17
 const moveTime = 6;
 const FoodAppearTime = 100;
 const FoodLastTime = 300;
@@ -48,20 +48,67 @@ let snake = {
     posHeadR : Math.floor(bRows/2 ),
     posHeadC : Math.floor(bCols/2 ),
     heading : "up",
+    renderHeading : "up",
 
     renderMe(rowConst, colConst) { //can adjust if needed, (0,0) means no adjust
         for(let r=0; r<bRows; r++)
             for(let c=0; c<bRows; c++) {
                 if( r === this.posHeadR && c === this.posHeadC ) {
-                   ctx.fillStyle = "red";
-                   ctx.fillRect((c + 0.5*rowConst)*bWid, (r + 0.5*colConst)*bHei, bWid, bHei);
+                   /*ctx.fillStyle = "red";
+                   ctx.fillRect((c + 0.5*rowConst)*bWid, (r + 0.5*colConst)*bHei, bWid, bHei);*/
                 }
                 else if( graph[r][c] > 0 ) {
-                    ctx.fillStyle = "black";
+                    //gradiant
+                    let grd = ctx.createRadialGradient((c + 0.5)*bWid,(r + 0.5)*bHei,0.1*bWid,(c + 0.5)*bWid,(r + 0.5)*bHei,1.3*bWid);
+                    grd.addColorStop(0,"black");
+                    grd.addColorStop(1,"white");
+                    ctx.fillStyle = grd;
+                    //ctx.fillStyle = "black";
                     ctx.fillRect((c + 0.5*rowConst)*bWid, (r + 0.5*colConst)*bHei, bWid, bHei);
+
+                   /* ctx.strokeStyle = "white";
+                    ctx.strokeWidth = 10;
+                    ctx.strokeRect((c + 0.1)*bWid, (r + 0.1)*bHei, 0.8*bWid, 0.8*bHei);*/
                 }
             }
     },
+    renderHeadTail()
+    {
+        let fac = timeNode%moveTime; //moveTime === 6
+        fac = fac / moveTime;
+
+        let c = snake.posHeadC, r = snake.posHeadR;
+
+        let oc = c, or = r;
+        switch( snake.renderHeading )
+        {
+            case "up": or = (or + 1 + bRows)%bRows; break;
+            case "down": or = (or - 1 + bRows)%bRows; break;
+            case "left": oc = (oc + 1 + bCols)%bCols; break;
+            case "right": oc = (oc - 1 + bCols)%bCols; break;
+        }
+        let grd = ctx.createRadialGradient((oc + 0.5)*bWid,(or + 0.5)*bHei,0.1*bWid,(oc + 0.5)*bWid,(or + 0.5)*bHei,1.3*bWid);
+        grd.addColorStop(0,"black");
+        grd.addColorStop(1,"white");
+        ctx.fillStyle = grd;
+        if( graph[or][oc] > 0 ) ctx.fillRect(oc*bWid, or*bHei, bWid, bHei);
+
+        ctx.fillStyle = "red";
+        switch( snake.renderHeading )
+        {
+            case "up": ctx.fillRect(c*bWid, r*bHei + (1 - fac)*bHei, bWid, Math.min(bHei, bHei*bRows - (r*bHei + (1 - fac)*bHei) ) ); break;
+            case "down": ctx.fillRect(c*bWid, r*bHei - (1-fac)*bHei, bWid, bHei); break;
+            case "left": ctx.fillRect(c*bWid + (1-fac)*bWid, r*bHei, Math.min(bWid, bWid*bCols-(c*bWid + (1-fac)*bWid) ), bHei ); break;
+            case "right": ctx.fillRect(c*bWid - (1-fac)*bWid, r*bHei, bWid, bHei); break; //canvas boarder did the rest
+        }
+
+     /*   if( graph[or][oc] <= 0 ) {
+            ctx.fillStyle = "white";
+            ctx.fillRect(oc*bWid, or*bHei, bWid, bHei );
+        }*/
+
+    },
+
     eatSelf() { //call when body moved in data, but head haven't
         if (graph[snake.posHeadR][snake.posHeadC] > 0) {
             gaming.ended = true;
@@ -71,17 +118,28 @@ let snake = {
         if (graph[snake.posHeadR][snake.posHeadC] < 0) { //yes FOOD!!
             for (let r = 0; r < bRows; r++)
                 for (let c = 0; c < bCols; c++)
-                    if(graph[r][c] > 0) graph[r][c]++;
+                    if (graph[r][c] > 0) graph[r][c]++;
 
             let ind;
-            for(ind=0; ind<Foods.length; ind++)
-                if( Foods[ind].col === snake.posHeadC && Foods[ind].row === snake.posHeadR ) break;
+            for (ind = 0; ind < Foods.length; ind++)
+                if (Foods[ind].col === snake.posHeadC && Foods[ind].row === snake.posHeadR) break;
 
-            graph[ Foods[ind].row ][ Foods[ind].col ] = 0;
+            graph[Foods[ind].row][Foods[ind].col] = 0;
             Foods[ind].addScore();
             Foods[ind].vanish();
 
             snake.length++;
+        }
+
+        //special one
+        else {
+            for (let ind = 0; ind < Foods.length; ind++)
+                if (Foods[ind].credit === 4)
+                    if (Math.abs(snake.posHeadR - Foods[ind].row) === 1 && Math.abs(snake.posHeadC - Foods[ind].col) === 1) {
+                        Foods[ind].addScore();
+                        Foods[ind].vanish();
+                        snake.length++;
+                    }
         }
     }
 }

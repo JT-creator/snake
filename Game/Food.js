@@ -159,7 +159,7 @@ class GreatFood extends Food {
         ctx.fill();
 
         ctx.moveTo(bWid * 2,bHei * bRows+220);
-        ctx.lineTo(bWid * 2 + (FoodLastTime - this.counting)/FoodLastTime * 17*bWid, bHei * bRows+220 );
+        ctx.lineTo(bWid * 2 + (FoodLastTime - this.counting)/FoodLastTime * 12*bWid, bHei * bRows+220 );
         ctx.strokeStyle = "red";
         ctx.lineWidth = 20;
         ctx.stroke();
