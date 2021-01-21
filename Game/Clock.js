@@ -1,5 +1,5 @@
 console.log("clock here");
-const GamingSpan = 2; //min
+const GamingSpan = 1; //min
 
 let clock = {
     startTime : new Date(),
@@ -17,9 +17,12 @@ let clock = {
             leftMin--;
         }
 
+        if( leftSec === 59 || leftSec === 58 || (leftMin===0 && leftSec<30) ) ctx.fillStyle = "red";
+        if(leftMin===0 && leftSec<30 && !reportTime.showing ) reportTime.restart();
         ctx.fillText(   leftMin.toString() + "min " + leftSec.toString() + "sec", bWid * 8, bHei * bRows+180 );
         if( leftMin <= 0 && leftSec <= 0 ) gameEnd();
         if( leftMin < 0 ) gameEnd();
+        ctx.fillStyle = "black";
     },
     startClock() { this.startTime = new Date(); }
 }

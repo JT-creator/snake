@@ -82,7 +82,7 @@ function updateRender()
     if( timeNode%moveTime === 0 ) //May need to adjust.  rerender background
         clearMainCanvas();
     if( timeNode%2 === 0)
-        reportCheck.renderMe();
+        if( !reportCheck.renderMe() ) reportTime.renderMe();
 
     if( timeNode%moveTime === 0 ) //Food
         Foods.forEach( function (c) { c.renderme(); });
@@ -120,7 +120,7 @@ function gameStart()
 function gameEnd() {
     clearInterval( gaming.interval1 );
     clearInterval( gaming.interval2 );
-
+    clearInterval( reportTime.inter );
 }
 
 
