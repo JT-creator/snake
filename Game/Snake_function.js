@@ -6,7 +6,7 @@ function renderBoarders() { //create Block boarders
         for(let c=0; c<bCols; c++)
         {
             if( r === snake.posHeadR || c === snake.posHeadC ) {
-                ctx.lineWidth = 2.8;
+                ctx.lineWidth = 3;
                 ctx.strokeRect(c * bWid, r * bHei, bWid, bHei);
                 ctx.lineWidth = 2;
             }
