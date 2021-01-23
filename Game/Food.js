@@ -113,7 +113,7 @@ class AFood extends Food {
     constructor() {
         super();
         this.cga = 4.0;
-        this.source = "../Game/f/Food4.jpg";
+        this.source = "../Game/f/Food6.jpg";
     }
 }
 
@@ -121,7 +121,7 @@ class BFood extends Food {
     constructor() {
         super();
         this.cga = 3.0;
-        this.source = "../Game/f/Food3.jpg";
+        this.source = "../Game/f/Food8.jpg";
     }
 }
 
@@ -129,7 +129,7 @@ class CFood extends Food {
     constructor() {
         super();
         this.cga = 2.0;
-        this.source = "../Game/f/Food3.jpg";
+        this.source = "../Game/f/Food7.jpg";
     }
 }
 

@@ -110,7 +110,9 @@ function clearMainCanvas() {
 function gameStart()
 {
     //document.body.addEventListener('touchmove', function(event) { event.preventDefault(); }, false);
+    if( gaming.started ) return;
 
+    gaming.started = true;
     initGame();
     controls.haveControl();
     gaming.interval1 = setInterval(updateData, 20);
@@ -124,8 +126,17 @@ function gameEnd() {
     clearInterval( gaming.interval1 );
     clearInterval( gaming.interval2 );
     clearInterval( reportTime.inter );
+
+    if( gaming.endreson === "selfeat" ) {
+        let grd = ctx.createLinearGradient(snake.posHeadC * bWid, snake.posHeadR*bHei, snake.posHeadC * bWid + bWid, snake.posHeadR*bHei + bHei);
+        grd.addColorStop(0, "red");
+        grd.addColorStop(1, "black");
+        ctx.fillStyle = grd;
+        ctx.fillRect( snake.posHeadC * bWid, snake.posHeadR*bHei, bWid, bHei);
+    }
+    endReport();
 }
 
 
 
-gameStart();
+//gameStart();

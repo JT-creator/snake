@@ -15,6 +15,8 @@ const FoodFlashingTime = 50;
 const GreateAppearTime = 700;
 const minReactDistForTouch = 30;
 
+const RequiredCredit = 10;
+
 let graph = []; //graph[row][col]
 //  x=0: nothing    x>0: snake  x<0: food
 let timeNode = 0;
@@ -37,9 +39,11 @@ let player = {
 }
 
 let gaming = {
+    started : false,
     ended : false,
     interval1 : 0,
-    interval2 : 0
+    interval2 : 0,
+    endreson : "timeout"
 }
 
 
@@ -161,6 +165,7 @@ let snake = {
 
     eatSelf() { //call when body moved in data, but head haven't
         if (graph[snake.posHeadR][snake.posHeadC] > 0) {
+            gaming.endreson = "selfeat";
             gaming.ended = true;
         }
     }, //self-eat
