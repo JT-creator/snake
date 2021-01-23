@@ -1,10 +1,11 @@
+let img1;
 
 function welcome() {
-    let img = document.createElement("img");
-    img.setAttribute("src", "../Game/wel/welcome.png")
-    ctx.drawImage(img, 0, 0, bWid*bCols, bHei*bRows);
-    ctx.drawImage(img, 0, 0, bWid*bCols, bHei*bRows);
-    ctx.drawImage(img, 0, 0, bWid*bCols, bHei*bRows);
+    img1 = document.createElement("img");
+    //ctx.drawImage(img1, 0, 0, bWid*bCols, bHei*bRows);
+    //img1.setAttribute("src", "../Game/wel/welcome.png");
+    img1.onload = function () { ctx.drawImage(img1, 0, 0, bWid*bCols, bHei*bRows); }
+    img1.src = "../Game/wel/welcome.png";
 
     window.addEventListener("touchend", gameStart);
     window.addEventListener("keyup", gameStart);
@@ -27,8 +28,9 @@ let topDog = {
     inter : 0,
     nextStep : function() {
         topDog.img = document.createElement("img");
-        topDog.img.setAttribute("src", "../Game/wel/dog/giphy (1)-"+topDog.i+".jpg");
-        ctx.drawImage(topDog.img, 0, 0, bCols*bWid, bRows*bHei);
+        topDog.img.onload = function() { ctx.drawImage(topDog.img, 0, 0, bCols*bWid, bRows*bHei); }
+        topDog.img.src = "../Game/wel/dog/giphy (1)-"+topDog.i+".jpg";
+
         topDog.i++;
         console.log("at top dog: "+topDog.i)
         if( topDog.i > 251 ) {
