@@ -10,8 +10,11 @@ let clock = {
         ctx.fillText("Time Left:", bWid * 2, bHei * bRows+180 );
 
         let temp = new Date();
+        let leftHour = this.startTime.getHours() - temp.getHours();
         let leftMin = this.startTime.getMinutes() + GamingSpan - temp.getMinutes();
         let leftSec = this.startTime.getSeconds() - temp.getSeconds();
+
+        if( leftHour < 0 ) leftMin -= 60;
         if( leftSec < 0 ) {
             leftSec += 60;
             leftMin--;

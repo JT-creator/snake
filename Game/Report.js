@@ -15,7 +15,7 @@ let reportCheck = {
     renderMe() {
         if( !this.showing ) return false;
         this.ele.setAttribute("src", "../Game/a/frame_"+this.i+"_delay-0.05s.jpg");
-        ctx.drawImage(this.ele, bCols*bWid - 250, bRows*bHei + 50, 150, 105);
+        ctx.drawImage(this.ele, bCols*bWid - 260, bRows*bHei + 40, 170, 120);
         return true;
     }
 }

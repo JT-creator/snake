@@ -1,6 +1,9 @@
 
 function renderBoarders() { //create Block boarders
-    ctx.strokeStyle = "\t#DDDDDD";
+    ctx.fillStyle = "#E9E9E9";
+    ctx.fillRect(0, 0, bWid*bCols, bHei*bRows );
+
+    ctx.strokeStyle = "white";//"#DDDDDD";
     ctx.lineWidth = 2;
     for(let r=0; r<bRows; r++)
         for(let c=0; c<bCols; c++)
