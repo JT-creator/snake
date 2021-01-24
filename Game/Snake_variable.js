@@ -15,7 +15,7 @@ const FoodFlashingTime = 50;
 const GreateAppearTime = 700;
 const minReactDistForTouch = 30;
 
-const RequiredCredit = 70;
+const RequiredCredit = 50;
 
 let graph = []; //graph[row][col]
 //  x=0: nothing    x>0: snake  x<0: food
@@ -64,7 +64,7 @@ let snake = {
                 else if( graph[r][c] > 0 ) {
                     //gradiant
                     let grd = ctx.createRadialGradient((c + 0.5)*bWid,(r + 0.5)*bHei,0.1*bWid,(c + 0.5)*bWid,(r + 0.5)*bHei,1.3*bWid);
-                    grd.addColorStop(0,"black");
+                    grd.addColorStop(0,"#E3A408");
                     grd.addColorStop(1,"white");
                     ctx.fillStyle = grd;
                     //ctx.fillStyle = "black";
@@ -92,12 +92,12 @@ let snake = {
             case "right": oc = (oc - 1 + bCols)%bCols; break;
         }
         let grd = ctx.createRadialGradient((oc + 0.5)*bWid,(or + 0.5)*bHei,0.1*bWid,(oc + 0.5)*bWid,(or + 0.5)*bHei,1.3*bWid);
-        grd.addColorStop(0,"black");
+        grd.addColorStop(0,"#E3A408");
         grd.addColorStop(1,"white");
         ctx.fillStyle = grd;
         if( graph[or][oc] > 0 ) ctx.fillRect(oc*bWid, or*bHei, bWid, bHei);
 
-        ctx.fillStyle = "red";
+        ctx.fillStyle = "#E34C00";
         switch( snake.renderHeading )
         {
             case "up":

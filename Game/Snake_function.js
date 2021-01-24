@@ -15,7 +15,7 @@ function renderBoarders() { //create Block boarders
         for(let c=0; c<bCols; c++)
         {
             if( r === snake.posHeadR || c === snake.posHeadC ) {
-                ctx.lineWidth = 3;
+                ctx.lineWidth = 4;
                 ctx.strokeRect(c * bWid, r * bHei, bWid, bHei);
                 ctx.lineWidth = 2;
             }
@@ -29,13 +29,11 @@ let barI = 0;
 imgBar.src = "../Game/pbar/flag.jpg";
 
 function renderProgressBar() {
-    ctx.drawImage(imgBar, 17*bWid, bHei*bRows + 250, 1.8*bWid, 2*bHei );
-
-    let img0 = new Image;
-    img0.onload = function() { ctx.drawImage(img0, 2*bWid, bHei*bRows + 240, 60 ,50 ); };
-    img0.src = "../Game/pbar/dog/barDog-"+ barI +".jpg";
+    ctx.drawImage(barImg[barI], Math.min(2*bWid +( 14*bWid * player.credit/RequiredCredit ), 22*bWid ) , bHei*bRows + 240, 60 ,50 )
     barI++;
     if(barI>15) barI = 0;
+
+    ctx.drawImage(imgBar, 17*bWid, bHei*bRows + 240, 1.6*bWid, 2*bHei );
 
     ctx.fillStyle = "black";
     ctx.fillRect( 2*bWid, bHei*bRows + 290, 21*bWid, 5 );

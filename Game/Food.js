@@ -1,5 +1,4 @@
 let Foods = [];
-let foodImg = document.createElement("img");
 
 //1, 2 ->A
 //3, 4, 5 ->B
@@ -94,13 +93,13 @@ class Food {
         /*ctx.beginPath();
         ctx.arc(bWid * (this.col + 0.5), bHei * (this.row + 0.5), 0.5 * bWid, 0, 2 * Math.PI);
         ctx.fillStyle = this.style;*/
-        foodImg.setAttribute("src", this.source );
+        //foodImg.setAttribute("src", this.source );
 
         if( FoodLastTime - this.counting <= FoodFlashingTime ) {
-            if( this.onFlash === false ) { ctx.drawImage(foodImg, bWid * this.col, bHei * this.row, bWid, bHei ); this.onFlash = true; }
+            if( this.onFlash === false ) { ctx.drawImage(this.source, bWid * this.col, bHei * this.row, bWid, bHei ); this.onFlash = true; }
             else this.onFlash = false;
         }
-        else ctx.drawImage(foodImg, bWid * this.col, bHei * this.row, bWid, bHei );
+        else ctx.drawImage(this.source, bWid * this.col, bHei * this.row, bWid, bHei );
     }
     addScore() {
         player.credit += this.credit;
@@ -113,7 +112,7 @@ class AFood extends Food {
     constructor() {
         super();
         this.cga = 4.0;
-        this.source = "../Game/f/Food6.jpg";
+        this.source = foodImgA;
     }
 }
 
@@ -121,7 +120,7 @@ class BFood extends Food {
     constructor() {
         super();
         this.cga = 3.0;
-        this.source = "../Game/f/Food8.jpg";
+        this.source = foodImgB;
     }
 }
 
@@ -129,7 +128,7 @@ class CFood extends Food {
     constructor() {
         super();
         this.cga = 2.0;
-        this.source = "../Game/f/Food7.jpg";
+        this.source = foodImgC;
     }
 }
 
@@ -138,7 +137,7 @@ class GreatFood extends Food {
         super();
         this.cga = 4.3;
         this.credit = 4;
-        this.source = "../Game/f/Food4.jpg";
+        this.source = foodImgG;
         this.row = row;
         this.col = col;
     }
@@ -159,8 +158,8 @@ class GreatFood extends Food {
         //ctx.arc(bWid * (this.col + 0.5), bHei * (this.row + 0.5), 0, 0, 2 * Math.PI);
         //ctx.stroke();
 
-        foodImg.setAttribute("src", this.source );
-        ctx.drawImage(foodImg, (this.col-1)*bWid, (this.row-1)*bHei, bWid*3, bHei*3 );
+        //foodImg.setAttribute("src", this.source );
+        ctx.drawImage(this.source, (this.col-1)*bWid, (this.row-1)*bHei, bWid*3, bHei*3 );
 
         ctx.moveTo(bWid * 2,bHei * bRows+220);
         ctx.lineTo(bWid * 2 + (FoodLastTime - this.counting)/FoodLastTime * 12*bWid, bHei * bRows+220 );
