@@ -1,7 +1,13 @@
 
 function renderBoarders() { //create Block boarders
-    ctx.fillStyle = "#E9E9E9";
+    //if( clock.flag1 ) ctx.fillStyle = "#FAC7D1";
+    ctx.fillStyle = "#E9E9E9";//color Test
+
     ctx.fillRect(0, 0, bWid*bCols, bHei*bRows );
+    //let img = new Image;
+    //img.onload = function () { ctx.drawImage(img, 0, 0, bWid*bCols, bHei*bRows); };
+    //img.src = "../Game/wel/abs.jpg";
+
 
     ctx.strokeStyle = "white";//"#DDDDDD";
     ctx.lineWidth = 2;

@@ -1,7 +1,7 @@
 let img1;
 
 function welcome() {
-    img1 = document.createElement("img");
+    img1 = new Image;
     //ctx.drawImage(img1, 0, 0, bWid*bCols, bHei*bRows);
     //img1.setAttribute("src", "../Game/wel/welcome.png");
     img1.onload = function () { ctx.drawImage(img1, 0, 0, bWid*bCols, bHei*bRows); }
@@ -13,23 +13,30 @@ function welcome() {
 
 welcome();
 
-let __img;
+let __imgSrc;
 function finalReport() {
     clearMainCanvas()
-    ctx.drawImage(__img, 0, 0, bCols*bWid, bRows*bHei);
+    let img = new Image;
+    img.onload = function() { ctx.drawImage(img, 0, 0, bCols*bWid, bRows*bHei); }
+    img.src = __imgSrc;
 
     player.renderScore();
+
+    if( gaming.endreson === "selfeat" ) {
+        console.log( __imgSrc );
+        addEventListener("touchend", () => { window.location.href = window.location.href;} );
+    }
+
 }
 
 let topDog = {
     showing : false,
-    img: 0,
     i : 0,
     inter : 0,
     nextStep : function() {
-        topDog.img = document.createElement("img");
-        topDog.img.onload = function() { ctx.drawImage(topDog.img, 0, 0, bCols*bWid, bRows*bHei); }
-        topDog.img.src = "../Game/wel/dog/giphy (1)-"+topDog.i+".jpg";
+        let img = new Image;
+        img.onload = function() { ctx.drawImage( img, 0, 0, bCols*bWid, bRows*bHei); }
+        img.src = "../Game/wel/dog/giphy (1)-"+topDog.i+".jpg";
 
         topDog.i++;
         console.log("at top dog: "+topDog.i)
@@ -49,7 +56,7 @@ function congrante() {
 
 let endReportJump;
 function endReport() {
-    endReportJump = setInterval(releaseEndReport, 3000);
+    endReportJump = setInterval(releaseEndReport, 1500);
 }
 
 function releaseEndReport() {
@@ -57,11 +64,12 @@ function releaseEndReport() {
 
     console.log("At EndReport");
     __img = document.createElement("img");
-    if( gaming.endreson === "selfeat" ) __img.setAttribute("src", "../Game/wel/selfeat.png");
-    else if( player.credit < RequiredCredit ) __img.setAttribute("src", "../Game/wel/creditlow.png");
-    else if( player.gpa > 4.0 ) __img.setAttribute("src", "../Game/wel/baoseed.png");
-    else if( player.credit > 1.2 * RequiredCredit ) __img.setAttribute("src", "../Game/wel/gandi.png");
-    else __img.setAttribute("src", "../Game/wel/pass.png");
+    if( gaming.endreson === "selfeat" ) __imgSrc = "../Game/wel/selfeat.png";
+    else if( player.credit < RequiredCredit ) __imgSrc = "../Game/wel/creditlow.png";
+    else if( player.credit > 1.2 && player.gpa > 4.0 ) __imgSrc = "../Game/wel/god.png";
+    else if( player.gpa > 4.0 ) __imgSrc = "../Game/wel/baoseed.png";
+    else if( player.credit > 1.2 * RequiredCredit ) __imgSrc = "../Game/wel/gandi.png";
+    else __imgSrc = "../Game/wel/pass.png";
 
     if( player.credit >= RequiredCredit && gaming.endreson!=="selfeat" ) {
         topDog.i = 0;

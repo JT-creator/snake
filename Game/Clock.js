@@ -3,6 +3,7 @@ const GamingSpan = 1; //min
 
 let clock = {
     startTime : new Date(),
+    flag1 : false,//color Test
 
     renderMe_JudgeEnd() {
         ctx.font = "30px Comic Sans MS";
@@ -22,6 +23,7 @@ let clock = {
 
         if( leftSec === 59 || leftSec === 58 || (leftMin===0 && leftSec<30) ) ctx.fillStyle = "red";
         if(leftMin===0 && leftSec<30 && !reportTime.showing ) reportTime.restart();
+        //if( leftMin===0 && leftSec===30 ) this.flag1 = true; ////color Test
         ctx.fillText(   leftMin.toString() + "min " + leftSec.toString() + "sec", bWid * 8, bHei * bRows+180 );
         if( leftMin <= 0 && leftSec <= 0 ) gameEnd();
         if( leftMin < 0 ) gameEnd();

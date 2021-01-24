@@ -15,7 +15,7 @@ const FoodFlashingTime = 50;
 const GreateAppearTime = 700;
 const minReactDistForTouch = 30;
 
-const RequiredCredit = 10;
+const RequiredCredit = 70;
 
 let graph = []; //graph[row][col]
 //  x=0: nothing    x>0: snake  x<0: food

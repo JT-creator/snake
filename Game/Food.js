@@ -154,10 +154,10 @@ class GreatFood extends Food {
     }
 
     specialRender() {
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.arc(bWid * (this.col + 0.5), bHei * (this.row + 0.5), 0, 0, 2 * Math.PI);
-        ctx.stroke();
+        //ctx.lineWidth = 1;
+        //ctx.beginPath();
+        //ctx.arc(bWid * (this.col + 0.5), bHei * (this.row + 0.5), 0, 0, 2 * Math.PI);
+        //ctx.stroke();
 
         foodImg.setAttribute("src", this.source );
         ctx.drawImage(foodImg, (this.col-1)*bWid, (this.row-1)*bHei, bWid*3, bHei*3 );
