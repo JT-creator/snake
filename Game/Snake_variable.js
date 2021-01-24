@@ -34,7 +34,7 @@ let player = {
         ctx.fillText( player.gpa.toFixed(5).toString(), bWid * 2, bHei * bRows+50+40 );
 
         ctx.fillText("total credit", bWid * 9, bHei * bRows+50 );
-        ctx.fillText( player.credit.toString(), bWid * 10, bHei * bRows+50+40 );
+        ctx.fillText( player.credit.toString() + "/" + RequiredCredit.toString(), bWid * 10, bHei * bRows+50+40 );
     }
 }
 

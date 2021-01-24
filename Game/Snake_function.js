@@ -24,6 +24,25 @@ function renderBoarders() { //create Block boarders
 
 }
 
+let imgBar = new Image;
+let barI = 0;
+imgBar.src = "../Game/pbar/flag.jpg";
+
+function renderProgressBar() {
+    ctx.drawImage(imgBar, 17*bWid, bHei*bRows + 250, 1.8*bWid, 2*bHei );
+
+    let img0 = new Image;
+    img0.onload = function() { ctx.drawImage(img0, 2*bWid, bHei*bRows + 240, 60 ,50 ); };
+    img0.src = "../Game/pbar/dog/barDog-"+ barI +".jpg";
+    barI++;
+    if(barI>15) barI = 0;
+
+    ctx.fillStyle = "black";
+    ctx.fillRect( 2*bWid, bHei*bRows + 290, 21*bWid, 5 );
+
+}
+
+
 function initGame(){
     for(let r=0; r<bRows; r++) //init graph[][]
     {
@@ -90,6 +109,9 @@ function updateRender()
 {
     if( timeNode%moveTime === 0 ) //May need to adjust.  rerender background
         clearMainCanvas();
+
+    if( timeNode%3 === 0 ) renderProgressBar();
+
     if( timeNode%2 === 0)
         if( !reportCheck.renderMe() ) reportTime.renderMe();
 
