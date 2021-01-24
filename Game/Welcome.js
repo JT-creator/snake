@@ -1,18 +1,19 @@
 let __img;
 let hahaInter;
+let Desmond;
 
 function welcome() {
     //ctx.drawImage(img1, 0, 0, bWid*bCols, bHei*bRows);
     //img1.setAttribute("src", "../Game/wel/welcome.png");
     //img1.onload = function () { ctx.drawImage(img1, 0, 0, bWid*bCols, bHei*bRows); }
     //img1.src = "../Game/wel/welcome.png";
+    clearInterval(Desmond);
     ctx.drawImage(welcomImg, 0, 0, bWid*bCols, bHei*bRows);
 
     window.addEventListener("touchend", gameStart);
     window.addEventListener("keyup", gameStart);
 }
-
-welcome();
+Desmond = setInterval( welcome, 200);
 
 function finalReport() {
     clearInterval(hahaInter);
