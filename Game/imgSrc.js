@@ -36,6 +36,7 @@ for(let i=0; i<=40; i++)
 }
 
 let topDogImg = [];
+let miniCount = 0;
 let finalSelfeat = document.createElement("img");
 let finalCreditLow = document.createElement("img");
 let finalCreditGod = document.createElement("img");
@@ -43,19 +44,19 @@ let finalBaoseed = document.createElement("img");
 let finalGandi = document.createElement("img");
 let finalPass = document.createElement("img");
 function loadEndReport() {
-    for(let i=0; i<=251; i++)
-    {
-        let img = document.createElement("img");
-        img.setAttribute("src", "../Game/wel/dog/giphy (1)-"+i+".jpg");
-        topDogImg.push(img);
-    }
-
     finalSelfeat.src = "../Game/wel/selfeat.png";
     finalCreditLow.src = "../Game/wel/creditlow.png";
     finalCreditGod.src = "../Game/wel/god.png";
     finalBaoseed.src = "../Game/wel/baoseed.png";
     finalGandi.src = "../Game/wel/gandi.png";
     finalPass.src = "../Game/wel/pass.png";
+
+    for(let i=0; i<=251; i++)
+    {
+        let img = document.createElement("img");
+        img.setAttribute("src", "../Game/wel/dog/giphy (1)-"+i+".jpg");
+        topDogImg.push(img);
+    }
 }
 
 let last_cga = 0;

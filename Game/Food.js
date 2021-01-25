@@ -102,6 +102,7 @@ class Food {
         else ctx.drawImage(this.source, bWid * this.col, bHei * this.row, bWid, bHei );
     }
     addScore() {
+        miniCount = 0;
         last_cga = this.cga;
         player.credit += this.credit;
         player.total_cga += this.cga * this.credit;

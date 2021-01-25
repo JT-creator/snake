@@ -4,6 +4,18 @@ function renderBoarders() { //create Block boarders
     ctx.fillStyle = "#E9E9E9";//color Test
 
     ctx.fillRect(0, 0, bWid*bCols, bHei*bRows );
+/*    for(let r=0; r<bRows; r++)
+        for(let c=0; c<bCols; c++)
+        {
+            let grd = ctx.createRadialGradient((0.5+c)*bWid, (0.5+r)+bHei,0.4*bHei, (0.5+c)*bWid, (0.5+r)+bHei, 0.7*bHei);
+            grd.addColorStop(0, "#E9E9E9");
+            grd.addColorStop(1, "white");
+
+            ctx.fillStyle = grd;
+            ctx.fillRect(c*bWid, r*bHei, bWid, bHei);
+        }*/
+
+
     //let img = new Image;
     //img.onload = function () { ctx.drawImage(img, 0, 0, bWid*bCols, bHei*bRows); };
     //img.src = "../Game/wel/abs.jpg";
@@ -58,8 +70,9 @@ function initGame(){
 
 function renderMiniReport()
 {
+    miniCount++;
     let i;
-    if(last_cga===0) return;
+    if(last_cga===0 || miniCount>10 ) return;
     if(last_cga===4.3) i = 0;
     else if(last_cga===4) i = 1;
     else if(last_cga===3) i = 2;
