@@ -58,6 +58,26 @@ function loadEndReport() {
     finalPass.src = "../Game/wel/pass.png";
 }
 
+let last_cga = 0;
+let reportFood = [];
+if(true)
+{
+    let img1 = document.createElement("img");
+    img1.setAttribute("src", "../Game/f/FoodR1.jpg");
+    reportFood.push(img1);
+
+    let img2 = document.createElement("img");
+    img2.setAttribute("src", "../Game/f/FoodR2.png");
+    reportFood.push(img2);
+
+    let img3 = document.createElement("img");
+    img3.setAttribute("src", "../Game/f/FoodR3.jpg");
+    reportFood.push(img3);
+
+    let img4 = document.createElement("img");
+    img4.setAttribute("src", "../Game/f/FoodR4.jpg");
+    reportFood.push(img4);
+}
 
 
 

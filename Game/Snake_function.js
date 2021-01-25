@@ -56,6 +56,18 @@ function initGame(){
     snake.renderMe(0, 0);
 }
 
+function renderMiniReport()
+{
+    let i;
+    if(last_cga===0) return;
+    if(last_cga===4.3) i = 0;
+    else if(last_cga===4) i = 1;
+    else if(last_cga===3) i = 2;
+    else if(last_cga===2) i = 3;
+
+    ctx.drawImage( reportFood[i], 22*bWid, bHei*bRows+100, 2*bWid, 2*bHei);
+}
+
 function updateData()
 {
     timeNode++; //increase every 0.02s
@@ -109,6 +121,8 @@ function updateRender()
         clearMainCanvas();
 
     if( timeNode%3 === 0 ) renderProgressBar();
+
+    if( timeNode%moveTime === 0 ) renderMiniReport();
 
     if( timeNode%2 === 0)
         if( !reportCheck.renderMe() ) reportTime.renderMe();
