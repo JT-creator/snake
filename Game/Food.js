@@ -1,7 +1,7 @@
 let Foods = [];
 
-//1, 2 ->A
-//3, 4, 5 ->B
+//1, 2, 5 ->A
+//3, 4, ->B
 //6 ->C
 function generateFood()
 {
@@ -10,10 +10,10 @@ function generateFood()
     let seed = Math.floor( Math.random()*6 ) + 1;
     switch( seed )
     {
-        case 1: case 2:
+        case 1: case 2: case 5:
             ret = new AFood();
             break;
-        case 3: case 4: case 5:
+        case 3: case 4:
             ret = new BFood();
             break;
         case 6:

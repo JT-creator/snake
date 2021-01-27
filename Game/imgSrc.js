@@ -68,7 +68,7 @@ if(true)
     reportFood.push(img1);
 
     let img2 = document.createElement("img");
-    img2.setAttribute("src", "../Game/f/FoodR2.png");
+    img2.setAttribute("src", "../Game/f/FoodR2.jpg");
     reportFood.push(img2);
 
     let img3 = document.createElement("img");

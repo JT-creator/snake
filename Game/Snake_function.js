@@ -41,14 +41,14 @@ let barI = 0;
 imgBar.src = "../Game/pbar/flag.jpg";
 
 function renderProgressBar() {
-    ctx.drawImage(barImg[barI], Math.min(1*bWid +( 13*bWid * player.credit/RequiredCredit ), 21*bWid ) , bHei*bRows + 240, 60 ,50 )
+    ctx.drawImage(barImg[barI], Math.min(bWid +( 13*bWid * player.credit/RequiredCredit ), 21*bWid ) , bHei*bRows + 240, 60 ,50 )
     barI++;
     if(barI>15) barI = 0;
 
     ctx.drawImage(imgBar, 15*bWid, bHei*bRows + 240, 1.6*bWid, 2*bHei );
 
     ctx.fillStyle = "black";
-    ctx.fillRect( 1*bWid, bHei*bRows + 290, 20*bWid, 5 );
+    ctx.fillRect( bWid, bHei*bRows + 290, 20*bWid, 5 );
 
 }
 
@@ -78,7 +78,7 @@ function renderMiniReport()
     else if(last_cga===3) i = 2;
     else if(last_cga===2) i = 3;
 
-    ctx.drawImage( reportFood[i], 20*bWid-10, bHei*bRows+100, 2*bWid, 2*bHei);
+    ctx.drawImage( reportFood[i], 20*bWid-30, bHei*bRows+150, 2*bWid, 2*bHei);
 }
 
 function updateData()
