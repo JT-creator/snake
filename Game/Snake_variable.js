@@ -1,13 +1,13 @@
-let defaultWid = 700;
+let defaultWid = 704;
 var canvas = document.getElementById("Canvas_main");
 var ctx = canvas.getContext("2d");
 
 //ctx.fillStyle = "red"; ctx.fillRect(0,0,12,12 );
-const bRows = 33;
-const bCols = 25;
-const bWid = 28; //Block Width
-const bHei = 28; //Block Height
-const initLength = 17; //max = 17
+const bRows = 29;
+const bCols = 22;
+const bWid = 32; //Block Width
+const bHei = 32; //Block Height
+const initLength = 12; //max = 17
 const moveTime = 6;
 const FoodAppearTime = 100;
 const FoodLastTime = 300;
