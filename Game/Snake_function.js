@@ -22,14 +22,14 @@ function renderBoarders() { //create Block boarders
 
 
     ctx.strokeStyle = "white";//"#DDDDDD";
-    ctx.lineWidth = 3;
+    ctx.lineWidth = 2;
     for(let r=0; r<bRows; r++)
         for(let c=0; c<bCols; c++)
         {
             if( r === snake.posHeadR || c === snake.posHeadC ) {
                 ctx.lineWidth = 5;
                 ctx.strokeRect(c * bWid, r * bHei, bWid, bHei);
-                ctx.lineWidth = 3;
+                ctx.lineWidth = 2;
             }
             ctx.strokeRect(c * bWid, r * bHei, bWid, bHei);
         }
