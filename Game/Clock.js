@@ -8,7 +8,7 @@ let clock = {
     renderMe_JudgeEnd() {
         ctx.font = "30px Comic Sans MS";
         ctx.fillStyle = "black";
-        ctx.fillText("Time Left:", bWid * 2, bHei * bRows+180 );
+        ctx.fillText("Time Left:", bWid + 10, bHei * bRows+180 );
 
         let temp = new Date();
         let leftHour = this.startTime.getHours() - temp.getHours();
@@ -24,7 +24,7 @@ let clock = {
         if( leftSec === 59 || leftSec === 58 || (leftMin===0 && leftSec<30) ) ctx.fillStyle = "red";
         if(leftMin===0 && leftSec<30 && !reportTime.showing ) reportTime.restart();
         //if( leftMin===0 && leftSec===30 ) this.flag1 = true; ////color Test
-        ctx.fillText(   leftMin.toString() + "min " + leftSec.toString() + "sec", bWid * 8, bHei * bRows+180 );
+        ctx.fillText(   leftMin.toString() + "min " + leftSec.toString() + "sec", bWid * 7+10, bHei * bRows+180 );
         if( leftMin <= 0 && leftSec <= 0 ) gameEnd();
         if( leftMin < 0 ) gameEnd();
         ctx.fillStyle = "black";

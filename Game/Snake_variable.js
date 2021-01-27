@@ -30,11 +30,11 @@ let player = {
     renderScore() {
         ctx.font = "30px Comic Sans MS";
         ctx.fillStyle = "black";
-        ctx.fillText("cga", bWid * 3, bHei * bRows+50 );
-        ctx.fillText( player.gpa.toFixed(5).toString(), bWid * 2, bHei * bRows+50+40 );
+        ctx.fillText("cga", bWid * 2+10, bHei * bRows+50 );
+        ctx.fillText( player.gpa.toFixed(5).toString(), bWid +10, bHei * bRows+50+40 );
 
-        ctx.fillText("total credit", bWid * 9, bHei * bRows+50 );
-        ctx.fillText( player.credit.toString() + "/" + RequiredCredit.toString(), bWid * 10, bHei * bRows+50+40 );
+        ctx.fillText("total credit", bWid * 8+10, bHei * bRows+50 );
+        ctx.fillText( player.credit.toString() + "/" + RequiredCredit.toString(), bWid * 9+10, bHei * bRows+50+40 );
     }
 }
 

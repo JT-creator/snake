@@ -163,8 +163,8 @@ class GreatFood extends Food {
         //foodImg.setAttribute("src", this.source );
         ctx.drawImage(this.source, (this.col-1)*bWid, (this.row-1)*bHei, bWid*3, bHei*3 );
 
-        ctx.moveTo(bWid * 2,bHei * bRows+220);
-        ctx.lineTo(bWid * 2 + (FoodLastTime - this.counting)/FoodLastTime * 12*bWid, bHei * bRows+220 );
+        ctx.moveTo(bWid + 10,bHei * bRows+220);
+        ctx.lineTo(bWid + 10 + (FoodLastTime - this.counting)/FoodLastTime * 12*bWid, bHei * bRows+220 );
         ctx.strokeStyle = "#FBCC21";
         ctx.lineWidth = 20;
 
