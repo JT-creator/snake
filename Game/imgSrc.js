@@ -2,6 +2,10 @@
 let welcomImg = document.createElement("img");
 welcomImg.src = "../Game/wel/welcome.png";
 
+let musicTopDog = new Audio("../Game/Audio/TopDog.mp3");
+let musicDing = new Audio("../Game/Audio/Ding.mp3");
+let musicTime = new Audio("../Game/Audio/Time.mp3");
+
 let headImg = [];//0 up, 1 down, 2 left, 3 right
 if(true) {
     let img1 = document.createElement("img");

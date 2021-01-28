@@ -24,6 +24,7 @@ let clock = {
         if( leftSec === 59 || leftSec === 58 || (leftMin===0 && leftSec<30) ) ctx.fillStyle = "red";
         if(leftMin===0 && leftSec<30 && !reportTime.showing ) reportTime.restart();
         //if( leftMin===0 && leftSec===30 ) this.flag1 = true; ////color Test
+        if( leftMin===0 && leftSec===30 ) musicTime.play();
         ctx.fillText(   leftMin.toString() + "min " + leftSec.toString() + "sec", bWid * 7+10, bHei * bRows+180 );
         if( leftMin <= 0 && leftSec <= 0 ) gameEnd();
         if( leftMin < 0 ) gameEnd();

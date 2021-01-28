@@ -59,6 +59,7 @@ let topDog = {
 }
 
 function congrante() {
+    musicTopDog.play();
     topDog.showing = true;
     topDog.inter = setInterval( topDog.nextStep, 20);
     hahaInter = setInterval( finalReport, 100);

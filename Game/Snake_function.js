@@ -165,6 +165,7 @@ function gameStart()
     //document.body.addEventListener('touchmove', function(event) { event.preventDefault(); }, false);
     if( gaming.started ) return;
 
+    //musicTime.play();
     gaming.started = true;
     initGame();
     controls.haveControl();
