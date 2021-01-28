@@ -2,6 +2,22 @@
 let welcomImg = document.createElement("img");
 welcomImg.src = "../Game/wel/welcome.png";
 
+let headImg = [];//0 up, 1 down, 2 left, 3 right
+if(true) {
+    let img1 = document.createElement("img");
+    img1.setAttribute("src", "../Game/f/head_up.jpg");
+    headImg.push(img1);
+    let img2 = document.createElement("img");
+    img2.setAttribute("src", "../Game/f/head_down.jpg");
+    headImg.push(img2);
+    let img3 = document.createElement("img");
+    img3.setAttribute("src", "../Game/f/head_left.jpg");
+    headImg.push(img3);
+    let img4 = document.createElement("img");
+    img4.setAttribute("src", "../Game/f/head_right.jpg");
+    headImg.push(img4);
+}
+
 let barImg = [];
 for(let i = 0; i<=15; i++)
 {

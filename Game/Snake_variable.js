@@ -30,11 +30,11 @@ let player = {
     renderScore() {
         ctx.font = "30px Comic Sans MS";
         ctx.fillStyle = "black";
-        ctx.fillText("cga", bWid * 2+10, bHei * bRows+50 );
-        ctx.fillText( player.gpa.toFixed(5).toString(), bWid +10, bHei * bRows+50+40 );
+        ctx.fillText("cga", bWid * 2+10, bHei * bRows+70 );
+        ctx.fillText( player.gpa.toFixed(5).toString(), bWid +10, bHei * bRows+70+40 );
 
-        ctx.fillText("total credit", bWid * 8+10, bHei * bRows+50 );
-        ctx.fillText( player.credit.toString() + "/" + RequiredCredit.toString(), bWid * 9+10, bHei * bRows+50+40 );
+        ctx.fillText("total credit", bWid * 8+10, bHei * bRows+70 );
+        ctx.fillText( player.credit.toString() + "/" + RequiredCredit.toString(), bWid * 9+10, bHei * bRows+70+40 );
     }
 }
 
@@ -91,19 +91,21 @@ let snake = {
             case "left": oc = (oc + 1 + bCols)%bCols; break;
             case "right": oc = (oc - 1 + bCols)%bCols; break;
         }
-        let grd = ctx.createRadialGradient((oc + 0.5)*bWid,(or + 0.5)*bHei,0.1*bWid,(oc + 0.5)*bWid,(or + 0.5)*bHei,1.3*bWid);
+        let grd = ctx.createRadialGradient((oc + 0.5)*bWid,(or + 0.5)*bHei,0.1*bWid,(oc + 0.5)*bWid,(or + 0.5)*bHei,1.1*bWid);
         grd.addColorStop(0,"#E3A408");
         grd.addColorStop(1,"white");
         ctx.fillStyle = grd;
         if( graph[or][oc] > 0 ) ctx.fillRect(oc*bWid, or*bHei, bWid, bHei);
 
-        ctx.fillStyle = "#E34C00";
+        //ctx.fillStyle = "#E34C00";
         switch( snake.renderHeading )
         {
             case "up":
-                ctx.fillRect(c*bWid, r*bHei + (1 - fac)*bHei, bWid, Math.min(bHei, bHei*bRows - (r*bHei + (1 - fac)*bHei) ) );
-
-                if( r*bHei + (1 - fac)*bHei + 0.35*bHei > bHei * bRows ) break;
+                //ctx.fillRect(c*bWid, r*bHei + (1 - fac)*bHei, bWid, Math.min(bHei, bHei*bRows - (r*bHei + (1 - fac)*bHei) ) );
+                ctx.drawImage(headImg[0], c*bWid, r*bHei + (1 - fac)*bHei, bWid, bHei);
+                ctx.fillStyle = "white"
+                ctx.fillRect(0, bRows*bHei, bCols*bWid, bHei);
+                /*if( r*bHei + (1 - fac)*bHei + 0.35*bHei > bHei * bRows ) break;
                 ctx.fillStyle = "black";
                 ctx.beginPath();
                 ctx.arc((c+0.3)*bWid, r*bHei + (1 - fac)*bHei + 0.35*bHei, 0.1*bWid, 0, 2 * Math.PI);
@@ -113,11 +115,12 @@ let snake = {
                 ctx.beginPath();
                 ctx.arc((c+0.7)*bWid, r*bHei + (1 - fac)*bHei + 0.35*bHei, 0.1*bWid, 0, 2 * Math.PI);
                 //ctx.stroke();
-                ctx.fill();
+                ctx.fill();*/
                 break;
             case "down":
-                ctx.fillRect(c*bWid, r*bHei - (1-fac)*bHei, bWid, bHei);
-                ctx.fillStyle = "black";
+                //ctx.fillRect(c*bWid, r*bHei - (1-fac)*bHei, bWid, bHei);
+                ctx.drawImage(headImg[1], c*bWid, r*bHei - (1-fac)*bHei, bWid, bHei);
+                /*ctx.fillStyle = "black";
                 ctx.beginPath();
                 ctx.arc((c+0.3)*bWid, r*bHei - (1-fac)*bHei + 0.65*bHei, 0.1*bWid, 0, 2 * Math.PI);
                 //ctx.stroke();
@@ -126,11 +129,12 @@ let snake = {
                 ctx.beginPath();
                 ctx.arc((c+0.7)*bWid, r*bHei - (1-fac)*bHei + 0.65*bHei, 0.1*bWid, 0, 2 * Math.PI);
                 //ctx.stroke();
-                ctx.fill();
+                ctx.fill();*/
                 break;
             case "left":
-                ctx.fillRect(c*bWid + (1-fac)*bWid, r*bHei, Math.min(bWid, bWid*bCols-(c*bWid + (1-fac)*bWid) ), bHei );
-                ctx.fillStyle = "black";
+                //ctx.fillRect(c*bWid + (1-fac)*bWid, r*bHei, Math.min(bWid, bWid*bCols-(c*bWid + (1-fac)*bWid) ), bHei );
+                ctx.drawImage(headImg[2], c*bWid + (1-fac)*bWid, r*bHei, bWid, bHei);
+                /*ctx.fillStyle = "black";
                 ctx.beginPath();
                 ctx.arc(c*bWid + (1-fac)*bWid + 0.35*bWid, r*bHei + 0.3*bHei, 0.1*bWid, 0, 2 * Math.PI);
                 //ctx.stroke();
@@ -139,11 +143,12 @@ let snake = {
                 ctx.beginPath();
                 ctx.arc(c*bWid + (1-fac)*bWid + 0.35*bWid, r*bHei + 0.7*bHei, 0.1*bWid, 0, 2 * Math.PI);
                 //ctx.stroke();
-                ctx.fill();
+                ctx.fill();*/
                 break;
             case "right":
-                ctx.fillRect(c*bWid - (1-fac)*bWid, r*bHei, bWid, bHei);
-                ctx.fillStyle = "black";
+                //ctx.fillRect(c*bWid - (1-fac)*bWid, r*bHei, bWid, bHei);
+                ctx.drawImage(headImg[3], c*bWid - (1-fac)*bWid, r*bHei, bWid, bHei);
+                /*ctx.fillStyle = "black";
                 ctx.beginPath();
                 ctx.arc(c*bWid - (1-fac)*bWid + 0.65*bWid, r*bHei + 0.3*bHei, 0.1*bWid, 0, 2 * Math.PI);
                 //ctx.stroke();
@@ -152,7 +157,7 @@ let snake = {
                 ctx.beginPath();
                 ctx.arc(c*bWid - (1-fac)*bWid + 0.65*bWid, r*bHei + 0.7*bHei, 0.1*bWid, 0, 2 * Math.PI);
                 //ctx.stroke();
-                ctx.fill();
+                ctx.fill();*/
                 break; //canvas boarder did the rest
         }
 
