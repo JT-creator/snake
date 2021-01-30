@@ -1,24 +1,27 @@
 
 let welcomImg = document.createElement("img");
-welcomImg.src = "../Game/wel/welcome.png";
+welcomImg.src = "../Game/wel/welcome.jpg";
 
 let musicTopDog = new Audio("../Game/Audio/TopDog.mp3");
 let musicDing = new Audio("../Game/Audio/Ding.mp3");
 let musicTime = new Audio("../Game/Audio/Time.mp3");
 
+let thumbImg = document.createElement("img");
+thumbImg.setAttribute("src","../Game/f/thumb.jpg");
+
 let headImg = [];//0 up, 1 down, 2 left, 3 right
 if(true) {
     let img1 = document.createElement("img");
-    img1.setAttribute("src", "../Game/f/head_up.jpg");
+    img1.setAttribute("src", "../Game/f/dhead_up.jpg");
     headImg.push(img1);
     let img2 = document.createElement("img");
-    img2.setAttribute("src", "../Game/f/head_down.jpg");
+    img2.setAttribute("src", "../Game/f/dhead_down.jpg");
     headImg.push(img2);
     let img3 = document.createElement("img");
-    img3.setAttribute("src", "../Game/f/head_left.jpg");
+    img3.setAttribute("src", "../Game/f/dhead_left.jpg");
     headImg.push(img3);
     let img4 = document.createElement("img");
-    img4.setAttribute("src", "../Game/f/head_right.jpg");
+    img4.setAttribute("src", "../Game/f/dhead_right.jpg");
     headImg.push(img4);
 }
 
@@ -38,6 +41,8 @@ let foodImgC = document.createElement("img");
 foodImgC.src = "../Game/f/Food7.jpg";
 let foodImgG = document.createElement("img");
 foodImgG.src = "../Game/f/Food4.jpg";
+let foodImgGB = document.createElement("img");
+foodImgGB.src = "../Game/f/Food4B.jpg";
 
 let reportCheckImg = [];
 for(let i=3; i<=34; i++)
@@ -57,19 +62,23 @@ for(let i=0; i<=40; i++)
 
 let topDogImg = [];
 let miniCount = 0;
-let finalSelfeat = document.createElement("img");
+let finalSelfeat1 = document.createElement("img");
+let finalSelfeat2 = document.createElement("img");
 let finalCreditLow = document.createElement("img");
 let finalCreditGod = document.createElement("img");
-let finalBaoseed = document.createElement("img");
+let finalBaoseed1 = document.createElement("img");
+let finalBaoseed2 = document.createElement("img");
 let finalGandi = document.createElement("img");
 let finalPass = document.createElement("img");
 function loadEndReport() {
-    finalSelfeat.src = "../Game/wel/selfeat.png";
-    finalCreditLow.src = "../Game/wel/creditlow.png";
-    finalCreditGod.src = "../Game/wel/god.png";
-    finalBaoseed.src = "../Game/wel/baoseed.png";
-    finalGandi.src = "../Game/wel/gandi.png";
-    finalPass.src = "../Game/wel/pass.png";
+    finalSelfeat1.src = "../Game/wel/selfeat1.jpg";
+    finalSelfeat2.src = "../Game/wel/selfeat2.jpg";
+    finalCreditLow.src = "../Game/wel/creditlow.jpg";
+    finalCreditGod.src = "../Game/wel/god.jpg";
+    finalBaoseed1.src = "../Game/wel/baoseed1.jpg";
+    finalBaoseed2.src = "../Game/wel/baoseed2.jpg";
+    finalGandi.src = "../Game/wel/gandi.jpg";
+    finalPass.src = "../Game/wel/pass.jpg";
 
     for(let i=0; i<=251; i++)
     {

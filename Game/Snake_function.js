@@ -2,6 +2,7 @@
 function renderBoarders() { //create Block boarders
     //if( clock.flag1 ) ctx.fillStyle = "#FAC7D1";
     ctx.fillStyle = "#E9E9E9";//color Test
+    if(timeWarning) {ctx.fillStyle = "#ECDADA"; console.log("hahahahahaaaa");}
 
     ctx.fillRect(0, 0, bWid*bCols, bHei*bRows );
 /*    for(let r=0; r<bRows; r++)

@@ -12,14 +12,15 @@ const moveTime = 6;
 const FoodAppearTime = 100;
 const FoodLastTime = 300;
 const FoodFlashingTime = 50;
-const GreateAppearTime = 700;
+const GreateAppearTime = 600;
 const minReactDistForTouch = 30;
 
-const RequiredCredit = 50;
+const RequiredCredit = 120;
 
 let graph = []; //graph[row][col]
 //  x=0: nothing    x>0: snake  x<0: food
 let timeNode = 0;
+let timeWarning = false;
 
 let player = {
     credit : 0,
@@ -33,8 +34,10 @@ let player = {
         ctx.fillText("cga", bWid * 2+10, bHei * bRows+70 );
         ctx.fillText( player.gpa.toFixed(5).toString(), bWid +10, bHei * bRows+70+40 );
 
-        ctx.fillText("total credit", bWid * 8+10, bHei * bRows+70 );
+        ctx.fillText("total credits", bWid * 8+10, bHei * bRows+70 );
         ctx.fillText( player.credit.toString() + "/" + RequiredCredit.toString(), bWid * 9+10, bHei * bRows+70+40 );
+
+        if( player.gpa >= 4.0 ) ctx.drawImage(thumbImg, bWid * 2+100, bHei * bRows+40, 2*bWid, 2*bWid);
     }
 }
 
@@ -196,7 +199,7 @@ let snake = {
         //special one
         else {
             for (let ind = 0; ind < Foods.length; ind++)
-                if (Foods[ind].credit === 4)
+                if (Foods[ind].credit === 5)
                     if (Math.abs(snake.posHeadR - Foods[ind].row) === 1 && Math.abs(snake.posHeadC - Foods[ind].col) === 1) {
                         reportCheck.restart();
                         Foods[ind].addScore();

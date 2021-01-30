@@ -89,7 +89,7 @@ class Food {
         //console.log( Foods.length );
     };
     renderme() {
-        if( this.credit === 4 ) { this.specialRender(); return; }
+        if( this.credit === 5 ) { this.specialRender(); return; }
         /*ctx.beginPath();
         ctx.arc(bWid * (this.col + 0.5), bHei * (this.row + 0.5), 0.5 * bWid, 0, 2 * Math.PI);
         ctx.fillStyle = this.style;*/
@@ -139,7 +139,7 @@ class GreatFood extends Food {
     constructor(row, col) {
         super();
         this.cga = 4.3;
-        this.credit = 4;
+        this.credit = 5;
         this.source = foodImgG;
         this.row = row;
         this.col = col;
@@ -162,14 +162,17 @@ class GreatFood extends Food {
         //ctx.stroke();
 
         //foodImg.setAttribute("src", this.source );
-        ctx.drawImage(this.source, (this.col-1)*bWid, (this.row-1)*bHei, bWid*3, bHei*3 );
+        if( timeWarning ) ctx.drawImage(foodImgGB, (this.col-1)*bWid, (this.row-1)*bHei, bWid*3, bHei*3 );
+        else ctx.drawImage(this.source, (this.col-1)*bWid, (this.row-1)*bHei, bWid*3, bHei*3 );
 
-        ctx.moveTo(bWid + 10,bHei * bRows+220);
+        /*ctx.moveTo(bWid + 10,bHei * bRows+220);
         ctx.lineTo(bWid + 10 + (FoodLastTime - this.counting)/FoodLastTime * 12*bWid, bHei * bRows+220 );
         ctx.strokeStyle = "#FBCC21";
         ctx.lineWidth = 20;
 
         ctx.stroke();
-        ctx.lineWidth = 2;
+        ctx.lineWidth = 2;*/
+        ctx.fillStyle = "#FBCC21";
+        ctx.fillRect(bWid + 10,bHei * bRows+220,(FoodLastTime - this.counting)/FoodLastTime * 12*bWid, 20);
     }
 }
