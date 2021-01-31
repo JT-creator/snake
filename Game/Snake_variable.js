@@ -210,6 +210,7 @@ let snake = {
     }
 }
 
+var gameContainer = document.querySelector(".game-container");
 let controls = {
     touchStartX : 0,
     touchStartY : 0,
@@ -266,10 +267,40 @@ let controls = {
         window.addEventListener("keydown", function(e) { controls.keyReact(e.keyCode); });
         //window.addEventListener("keyup", function(e) { });
         //touches
-        window.addEventListener("touchstart", function (e) { /*e.preventDefault();*/ controls.touchStartX = e.pageX; controls.touchStartY = e.pageY; });
-        window.addEventListener("touchend", function (e) { /*e.preventDefault();*/ controls.touchEndX = e.pageX; controls.touchEndY = e.pageY; controls.touchReact(); });
+        gameContainer.addEventListener("touchstart", function (e) {
 
-        document.body.addEventListener("touchmove", function(e){ /*e.preventDefault();*/ });
+            if ((!window.navigator.msPointerEnabled && e.touches.length > 1) || e.targetTouches.length > 1) return;
+
+            if (window.navigator.msPointerEnabled) {
+                controls.touchStartX = e.pageX;
+                controls.touchStartY = e.pageY;
+            } else {
+                controls.touchStartX = e.touches[0].clientX;
+                controls.touchStartY = e.touches[0].clientY;
+            }
+
+            //controls.touchStartX = e.pageX; controls.touchStartY = e.pageY;
+            e.preventDefault();
+        });
+
+        gameContainer.addEventListener("touchmove", function (e) {
+            e.preventDefault();
+        });
+
+        gameContainer.addEventListener("touchend", function (e) {
+            //controls.touchEndX = e.pageX; controls.touchEndY = e.pageY;
+            if ((!window.navigator.msPointerEnabled && e.touches.length > 0) || e.targetTouches.length > 0) return;
+
+            if (window.navigator.msPointerEnabled) {
+                controls.touchEndX = e.pageX;
+                controls.touchEndY = e.pageY;
+            } else {
+                controls.touchEndX = e.changedTouches[0].clientX;
+                controls.touchEndY = e.changedTouches[0].clientY;
+            }
+
+            controls.touchReact();
+        });
     },
     //button
    /* buttonReactUp() { controls.keyReact(38); },
@@ -278,14 +309,6 @@ let controls = {
     buttonReactRight() { controls.keyReact(39); } */
 }
 
-var gameContainer = document.querySelector(".game-container");
-gameContainer.addEventListener("touchstart", function (event) {
-    event.preventDefault();
-});
-
-gameContainer.addEventListener("touchmove", function (event) {
-    event.preventDefault();
-});
 
 
 
