@@ -8,7 +8,7 @@ let loadingItem = {
     render : function () {
         if( loadingItem.i>=90 ) { clearInterval( loadingItem.inter ); cover();}
         ctx.clearRect(0,0, canvas.getAttribute("width"), canvas.getAttribute("height") );
-        loadingItem.i += 17;
+        loadingItem.i += 7;
         ctx.font = "30px Comic Sans MS"
         ctx.fillText("loading... "+loadingItem.i.toString()+"%", 100, 400);
         ctx.fillText("This may take up to 10 seconds", 100, 500);
