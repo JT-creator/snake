@@ -60,6 +60,13 @@ for(let i=0; i<=40; i++)
     reportTimeoutImg.push(img);
 }
 
+let certificateImg = document.createElement("img");
+certificateImg.src = "../Game/wel/hkust_1.png";
+let badImg = document.createElement("img");
+badImg.src = "../Game/wel/bad.jpg";
+let QRImg = document.createElement("img");
+QRImg.src = "../Game/wel/QR.jpg";
+
 let topDogImg = [];
 let miniCount = 0;
 let finalSelfeat1 = document.createElement("img");
@@ -70,16 +77,15 @@ let finalBaoseed1 = document.createElement("img");
 let finalBaoseed2 = document.createElement("img");
 let finalGandi = document.createElement("img");
 let finalPass = document.createElement("img");
+finalSelfeat1.src = "../Game/wel/selfeat1.jpg";
+finalSelfeat2.src = "../Game/wel/selfeat2.jpg";
+finalCreditLow.src = "../Game/wel/creditlow.jpg";
+finalCreditGod.src = "../Game/wel/god.jpg";
+finalBaoseed1.src = "../Game/wel/baoseed1.jpg";
+finalBaoseed2.src = "../Game/wel/baoseed2.jpg";
+finalGandi.src = "../Game/wel/gandi.jpg";
+finalPass.src = "../Game/wel/pass.jpg";
 function loadEndReport() {
-    finalSelfeat1.src = "../Game/wel/selfeat1.jpg";
-    finalSelfeat2.src = "../Game/wel/selfeat2.jpg";
-    finalCreditLow.src = "../Game/wel/creditlow.jpg";
-    finalCreditGod.src = "../Game/wel/god.jpg";
-    finalBaoseed1.src = "../Game/wel/baoseed1.jpg";
-    finalBaoseed2.src = "../Game/wel/baoseed2.jpg";
-    finalGandi.src = "../Game/wel/gandi.jpg";
-    finalPass.src = "../Game/wel/pass.jpg";
-
     for(let i=0; i<=251; i++)
     {
         let img = document.createElement("img");

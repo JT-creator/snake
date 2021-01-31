@@ -32,6 +32,20 @@ function welcome() {
     img2.src = "../Game/wel/welcome_bott.jpg";
     //ctx.drawImage(welcomImg, 0, bHei*bRows, bWid*bCols, 311);
 
+   /* let img3 = new Image;
+    img3.onload = function () { ctx.drawImage(img3, 0, bHei*bRows, 410, 300);}
+    img3.src = "../Game/wel/hkust_1.png";
+
+    setInterval( ()=>{
+    ctx.font = "30px Arial";
+    ctx.fillText( "4.000",115, bHei*bRows+157 );
+    ctx.fillText( "123",185, bHei*bRows+200 )}
+    , 20);
+
+    let img4 = new Image;
+    img4.onload = function () { ctx.drawImage(img4, 410, bHei*bRows, 290, 290);}
+    img4.src = "../Game/wel/QR.jpg";*/
+
     window.addEventListener("touchend", gameStart);
     window.addEventListener("keyup", gameStart);
 }
@@ -57,7 +71,21 @@ function finalReport() {
     else if( player.credit > 1.2 * RequiredCredit ) ctx.drawImage(finalGandi, 0, 0, bCols*bWid, bRows*bHei);
     else ctx.drawImage(finalPass, 0, 0, bCols*bWid, bRows*bHei);
 
-    player.renderScore();
+    if( player.credit >= RequiredCredit && gaming.endreson!=="selfeat" ){
+        ctx.drawImage(certificateImg, 0, bHei*bRows, 410, 300);
+
+        ctx.font = "30px Arial";
+        ctx.fillText( player.gpa.toString(),115, bHei*bRows+157);
+        ctx.fillText( player.credit.toFixed(3).toString(),185, bHei*bRows+200 )
+
+        ctx.drawImage(QRImg, 410, bHei*bRows, 290, 290);
+    }
+    else {
+        ctx.drawImage(badImg, 0, bHei*bRows, 410, 300);
+        ctx.drawImage(QRImg, 410, bHei*bRows, 290, 290);
+    }
+
+    //player.renderScore();
 
     if( gaming.endreson === "selfeat" || player.credit<RequiredCredit ) {
         //console.log( __imgSrc );
