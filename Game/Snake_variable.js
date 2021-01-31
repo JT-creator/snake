@@ -8,11 +8,11 @@ const bCols = 22;
 const bWid = 32; //Block Width
 const bHei = 32; //Block Height
 const initLength = 12; //max = 17
-const moveTime = 6;
-const FoodAppearTime = 100;
-const FoodLastTime = 300;
+const moveTime = 8;
+const FoodAppearTime = 120;
+const FoodLastTime = 360;
 const FoodFlashingTime = 50;
-const GreateAppearTime = 600;
+const GreateAppearTime = 1000;
 const minReactDistForTouch = 30;
 
 const RequiredCredit = 120;

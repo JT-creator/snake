@@ -9,7 +9,7 @@ let reportCheck = {
         this.inter = setInterval( ()=>{
             if(this.i<31) this.i++;
             else { clearInterval(this.inter); this.showing = false; }
-            }, 40 );
+            }, 34 );
     },
     renderMe() {
         if( !this.showing ) return false;
@@ -30,7 +30,7 @@ let reportTime = {
         this.inter = setInterval( ()=>{
             if(this.i<40) this.i++;
             else this.i=0;
-        }, 40 );
+        }, 34 );
     },
     renderMe() {
         if( !this.showing ) return;

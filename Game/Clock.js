@@ -1,5 +1,6 @@
 console.log("clock here");
-const GamingSpan = 2; //min
+const GamingSpanMin = 2; //min
+const GamingSpanSec = 30;//sec
 
 let clock = {
     startTime : new Date(),
@@ -12,13 +13,17 @@ let clock = {
 
         let temp = new Date();
         let leftHour = this.startTime.getHours() - temp.getHours();
-        let leftMin = this.startTime.getMinutes() + GamingSpan - temp.getMinutes();
-        let leftSec = this.startTime.getSeconds() - temp.getSeconds();
+        let leftMin = this.startTime.getMinutes() + GamingSpanMin - temp.getMinutes();
+        let leftSec = this.startTime.getSeconds() + GamingSpanSec - temp.getSeconds();
 
         if( leftHour < 0 ) leftMin -= 60;
         if( leftSec < 0 ) {
             leftSec += 60;
             leftMin--;
+        }
+        else if( leftSec >= 60 ) {
+            leftSec -= 60;
+            leftMin++;
         }
 
         if( leftSec === 59 || leftSec === 58 || (leftMin===0 && leftSec<30) ) ctx.fillStyle = "red";

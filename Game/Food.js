@@ -1,19 +1,19 @@
 let Foods = [];
 
 //1, 2, 5 ->A
-//3, 4, ->B
+//3, 4, 7->B
 //6 ->C
 function generateFood()
 {
     let ret;
     //random type
-    let seed = Math.floor( Math.random()*6 ) + 1;
+    let seed = Math.floor( Math.random()*7 ) + 1;
     switch( seed )
     {
         case 1: case 2: case 5:
             ret = new AFood();
             break;
-        case 3: case 4:
+        case 3: case 4: case 7:
             ret = new BFood();
             break;
         case 6:

@@ -134,7 +134,7 @@ function updateRender()
     if( timeNode%moveTime === 0 ) //May need to adjust.  rerender background
         clearMainCanvas();
 
-    if( timeNode%3 === 0 ) renderProgressBar();
+    if( timeNode%4 === 0 ) renderProgressBar();
 
     if( timeNode%moveTime === 0 ) renderMiniReport();
 
@@ -151,7 +151,7 @@ function updateRender()
     snake.renderHeadTail();
 
     if( timeNode%moveTime === 0) player.renderScore();
-    if( timeNode%6 === 0 ) clock.renderMe_JudgeEnd();
+    if( timeNode%4 === 0 ) clock.renderMe_JudgeEnd();
 
     if( gaming.ended ) gameEnd();
 }
@@ -170,8 +170,8 @@ function gameStart()
     gaming.started = true;
     initGame();
     controls.haveControl();
-    gaming.interval1 = setInterval(updateData, 20);
-    gaming.interval2 = setInterval(updateRender, 20);
+    gaming.interval1 = setInterval(updateData, 17);
+    gaming.interval2 = setInterval(updateRender, 17);
 
     clock.startClock();
     reportCheck.restart();

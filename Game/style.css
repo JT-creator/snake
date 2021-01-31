@@ -4,12 +4,12 @@ body {
 
 #top {
     background-color: rgb(255, 255, 255);
-    margin: 2% 10%;
+    margin: 1.5% 12%;
     border-radius: 15px;
 }
 
 #top img {
     display: block;
-    width: 15%;
+    width: 10%;
     margin: 0 auto;
 }
