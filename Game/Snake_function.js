@@ -163,6 +163,8 @@ function clearMainCanvas() {
 
 function gameStart()
 {
+    gameContainer.removeEventListener("touchend", gameStart);
+    gameContainer.removeEventListener("keyup", gameStart);
     //document.body.addEventListener('touchmove', function(event) { event.preventDefault(); }, false);
     if( gaming.started ) return;
 

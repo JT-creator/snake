@@ -37,6 +37,9 @@ function cover() {
 function welcome() {
     //ctx.drawImage(img1, 0, 0, bWid*bCols, bHei*bRows);
     if( cover_end ) return;
+    gameContainer.removeEventListener("touchend", welcome);
+    gameContainer.removeEventListener("keyup", welcome);
+
     cover_end = true;
     let img1 = new Image;
     //img1.setAttribute("src", "../Game/wel/welcome.png");
