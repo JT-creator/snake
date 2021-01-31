@@ -10,9 +10,9 @@ let loadingItem = {
         ctx.clearRect(0,0, canvas.getAttribute("width"), canvas.getAttribute("height") );
         loadingItem.i += 7;
         ctx.font = "30px Comic Sans MS"
-        ctx.fillText("loading... "+loadingItem.i.toString()+"%", 150, 400);
-        ctx.fillText("This may take up to 10 seconds", 150, 450);
-        ctx.fillText("Refresh the page if have loaded more than that", 10, 600);
+        ctx.fillText("loading... "+loadingItem.i.toString()+"%", 100, 400);
+        ctx.fillText("This may take up to 10 seconds", 100, 500);
+        ctx.fillText("Refresh the page if failed", 100, 600);
     }
 }
 
