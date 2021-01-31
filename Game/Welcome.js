@@ -2,6 +2,25 @@ let hahaInter;
 let cover_end = false;
 //let Desmond;
 
+let loadingItem = {
+    i : 0,
+    inter : 0,
+    render : function () {
+        if( loadingItem.i>=90 ) { clearInterval( loadingItem.inter ); cover();}
+        ctx.clearRect(0,0, canvas.getAttribute("width"), canvas.getAttribute("height") );
+        loadingItem.i += 7;
+        ctx.font = "30px Comic Sans MS"
+        ctx.fillText("loading... "+loadingItem.i.toString()+"%", 150, 400);
+        ctx.fillText("This may take up to 10 seconds", 150, 450);
+        ctx.fillText("Refresh the page if have loaded more than that", 10, 600);
+    }
+}
+
+function loading() {
+    loadingItem.inter = setInterval( loadingItem.render, 500 );
+}
+loading();
+
 function cover() {
     let img1 = new Image;
     img1.onload = function () { ctx.drawImage(img1, 0, 0, bWid*bCols, bHei*bRows); }
@@ -14,7 +33,6 @@ function cover() {
     window.addEventListener("touchend", welcome);
     window.addEventListener("keyup", welcome);
 }
-cover();
 
 function welcome() {
     //ctx.drawImage(img1, 0, 0, bWid*bCols, bHei*bRows);
@@ -81,8 +99,13 @@ function finalReport() {
         ctx.drawImage(QRImg, 410, bHei*bRows, 290, 290);
     }
     else {
-        ctx.drawImage(badImg, 0, bHei*bRows, 410, 300);
+        if(gaming.endreson==="selfeat") ctx.drawImage(badImg, 0, bHei*bRows, 410, 300);
+        else ctx.drawImage(creditLow_barImg, 0, bHei*bRows, 410, 300);
         ctx.drawImage(QRImg, 410, bHei*bRows, 290, 290);
+
+        ctx.font="60";
+        ctx.fillStyle = "black";
+        ctx.fillText("點擊屏幕復讀", 250, bRows*bHei-20 );
     }
 
     //player.renderScore();

@@ -60,6 +60,8 @@ for(let i=0; i<=40; i++)
     reportTimeoutImg.push(img);
 }
 
+let creditLow_barImg = document.createElement("img");
+creditLow_barImg.src = "../Game/wel/creditlow_bar.jpg"
 let certificateImg = document.createElement("img");
 certificateImg.src = "../Game/wel/hkust_1.png";
 let badImg = document.createElement("img");
