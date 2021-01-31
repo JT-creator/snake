@@ -8,7 +8,7 @@ let loadingItem = {
     render : function () {
         if( loadingItem.i>=90 ) { clearInterval( loadingItem.inter ); cover();}
         ctx.clearRect(0,0, canvas.getAttribute("width"), canvas.getAttribute("height") );
-        loadingItem.i += 7;
+        loadingItem.i += 17;
         ctx.font = "30px Comic Sans MS"
         ctx.fillText("loading... "+loadingItem.i.toString()+"%", 100, 400);
         ctx.fillText("This may take up to 10 seconds", 100, 500);
@@ -30,8 +30,8 @@ function cover() {
     img2.onload = function () { ctx.drawImage(img2, 0, bHei*bRows, bWid*bCols, 300); }
     img2.src = "../Game/wel/cover_bott.jpg";
 
-    window.addEventListener("touchend", welcome);
-    window.addEventListener("keyup", welcome);
+    gameContainer.addEventListener("touchend", welcome);
+    gameContainer.addEventListener("keyup", welcome);
 }
 
 function welcome() {
@@ -64,8 +64,8 @@ function welcome() {
     img4.onload = function () { ctx.drawImage(img4, 410, bHei*bRows, 290, 290);}
     img4.src = "../Game/wel/QR.jpg";*/
 
-    window.addEventListener("touchend", gameStart);
-    window.addEventListener("keyup", gameStart);
+    gameContainer.addEventListener("touchend", gameStart);
+    gameContainer.addEventListener("keyup", gameStart);
 }
 //Desmond = setInterval( welcome, 200);
 
@@ -93,8 +93,9 @@ function finalReport() {
         ctx.drawImage(certificateImg, 0, bHei*bRows, 410, 300);
 
         ctx.font = "30px Arial";
-        ctx.fillText( player.gpa.toString(),115, bHei*bRows+157);
-        ctx.fillText( player.credit.toFixed(3).toString(),185, bHei*bRows+200 )
+        ctx.fillStyle = "black";
+        ctx.fillText( player.gpa.toFixed(3).toString(),115, bHei*bRows+157);
+        ctx.fillText( player.credit.toString(),185, bHei*bRows+200 )
 
         ctx.drawImage(QRImg, 410, bHei*bRows, 290, 290);
     }
@@ -103,7 +104,7 @@ function finalReport() {
         else ctx.drawImage(creditLow_barImg, 0, bHei*bRows, 410, 300);
         ctx.drawImage(QRImg, 410, bHei*bRows, 290, 290);
 
-        ctx.font="60";
+        ctx.font="60px Comic Sans MS";
         ctx.fillStyle = "black";
         ctx.fillText("點擊屏幕復讀", 250, bRows*bHei-20 );
     }
@@ -112,7 +113,7 @@ function finalReport() {
 
     if( gaming.endreson === "selfeat" || player.credit<RequiredCredit ) {
         //console.log( __imgSrc );
-        addEventListener("touchend", () => { window.location.href = window.location.href;} );
+        gameContainer.addEventListener("touchend", () => { window.location.href = window.location.href;} );
     }
 
 }
