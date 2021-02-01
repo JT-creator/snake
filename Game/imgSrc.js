@@ -1,6 +1,29 @@
 
-let welcomImg = document.createElement("img");
-welcomImg.src = "../Game/wel/welcome.jpg";
+let wel_up_img = [], wel_down_img = [];
+if( true )
+{
+    for(let i=0; i<=3; i++)
+    {
+        let img = document.createElement("img");
+        img.setAttribute("src", "../Game/wel/cover"+i+".jpg");
+        wel_up_img.push(img);
+    }
+
+    for(let i=0; i<=1; i++)
+    {
+        let img = document.createElement("img");
+        img.setAttribute("src", "../Game/wel/cover_bott"+i+".jpg");
+        wel_down_img.push(img);
+    }
+}
+
+let readyImg = [];
+for(let i=0; i<=3; i++)
+{
+    let img = document.createElement("img");
+    img.setAttribute("src", "../Game/wel/ready"+i+".jpg");
+    readyImg.push(img);
+}
 
 let musicTopDog = new Audio("../Game/Audio/TopDog.mp3");
 let musicDing = new Audio("../Game/Audio/Ding.mp3");

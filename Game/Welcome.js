@@ -1,12 +1,99 @@
-let hahaInter;
+let hahaInter, readyInter;
 let cover_end = false;
 //let Desmond;
+
+function get_touch_x(e) {
+    if (window.navigator.msPointerEnabled) return controls.touchEndX = e.pageX;
+    else return controls.touchEndX = e.changedTouches[0].clientX;
+}
+
+function get_touch_y(e) {
+    if (window.navigator.msPointerEnabled) return controls.touchEndY = e.pageY;
+    else return controls.touchEndY = e.changedTouches[0].clientY;
+}
+
+function helperx(e) {
+    command_center.startX = get_touch_x(e);
+    command_center.startY = get_touch_y(e);
+}
+function helpery(e){
+    command_center.endX = get_touch_x(e);
+    command_center.endY = get_touch_y(e);
+    command_center.interpret_command();
+}
+
+let command_center = {
+    num : 0,
+    startX : 0,
+    startY : 0,
+    endX : 0,
+    endY : 0,
+    ready_count : 0,
+
+    init : function() {
+        let img1 = new Image;
+        img1.onload = function () { ctx.drawImage(img1, 0, 0, bWid*bCols, bHei*bRows); }
+        img1.src = "../Game/wel/cover0.jpg";
+
+        let img2 = new Image;
+        img2.onload = function () { ctx.drawImage(img2, 0, bHei*bRows, bWid*bCols, 300); }
+        img2.src = "../Game/wel/cover_bott0.jpg";
+
+        gameContainer.addEventListener("touchstart", helperx );
+        gameContainer.addEventListener("touchend", helpery );
+    },
+    interpret_command : function() {
+        let x0=command_center.startX, y0=command_center.startY, x1=command_center.endX, y1=command_center.endY;
+        if( Math.abs(y1-y0) > Math.abs(x1-x0) ) return;
+        if( Math.abs(x1-x0) < minReactDistForTouch ) return;
+
+        if( x1-x0 > 0 ) command_center.num++;
+        else command_center.num--;
+
+        if( command_center.num > 4 ) command_center.num = 4;
+        if( command_center.num < -1 ) command_center.num = -1;
+
+        console.log(command_center.num);
+        if( command_center.num === -1 || command_center.num === 4 ) readyGame();
+        else {
+            ctx.clearRect(0,0, canvas.getAttribute("width"), canvas.getAttribute("height") );
+            let i = command_center.num;
+            ctx.drawImage(wel_up_img[i], 0, 0, bWid*bCols, bHei*bRows);
+            ctx.drawImage(wel_down_img[ Math.min(i, 1) ], 0, bHei*bRows, bWid*bCols, 300);
+        }
+    },
+
+    renderLight : function() {
+        ctx.drawImage(readyImg[command_center.ready_count], 0, 0, bWid * bCols, bWid * bCols);
+        command_center.ready_count++;
+        console.log( "ready_count"+command_center.ready_count );
+        if (command_center.ready_count >= 4) {
+            gameStart();
+            clearInterval(readyInter);
+        }
+    }
+}
+
+function readyGame() {
+    let num_hints = 1;
+    gameContainer.removeEventListener("touchstart", helperx);
+
+    gameContainer.removeEventListener("touchend", helpery);
+
+    ctx.fillStyle = "#E9E9E9";
+    ctx.fillRect(0,0, canvas.getAttribute("width"), canvas.getAttribute("height") );
+    let i = Math.floor( Math.random()*num_hints ) + 3;
+    ctx.drawImage(readyImg[i], 0, bHei*bRows, bWid*bCols, 300);
+
+    command_center.ready_count = 0;
+    readyInter = setInterval( command_center.renderLight,900);
+}
 
 let loadingItem = {
     i : 0,
     inter : 0,
     render : function () {
-        if( loadingItem.i>=90 ) { clearInterval( loadingItem.inter ); cover();}
+        if( loadingItem.i>=90 ) { clearInterval( loadingItem.inter ); command_center.init();}
         ctx.clearRect(0,0, canvas.getAttribute("width"), canvas.getAttribute("height") );
         loadingItem.i += 7;
         ctx.font = "30px Comic Sans MS"
@@ -17,11 +104,11 @@ let loadingItem = {
 }
 
 function loading() {
-    loadingItem.inter = setInterval( loadingItem.render, 500 );
+    loadingItem.inter = setInterval( loadingItem.render, 100 );
 }
 loading();
 
-function cover() {
+/*function cover() {
     let img1 = new Image;
     img1.onload = function () { ctx.drawImage(img1, 0, 0, bWid*bCols, bHei*bRows); }
     img1.src = "../Game/wel/cover.jpg";
@@ -30,7 +117,7 @@ function cover() {
     img2.onload = function () { ctx.drawImage(img2, 0, bHei*bRows, bWid*bCols, 300); }
     img2.src = "../Game/wel/cover_bott.jpg";
 
-    gameContainer.addEventListener("touchend", welcome);
+    gameContainer.addEventListener("touchend", (e)=>{ console.log(get_touch_x(e), get_touch_y(e)); console.log(canvas.getAttribute("width"));} );
     gameContainer.addEventListener("keyup", welcome);
 }
 
@@ -65,11 +152,11 @@ function welcome() {
 
     let img4 = new Image;
     img4.onload = function () { ctx.drawImage(img4, 410, bHei*bRows, 290, 290);}
-    img4.src = "../Game/wel/QR.jpg";*/
+    img4.src = "../Game/wel/QR.jpg";*h/
 
     gameContainer.addEventListener("touchend", gameStart);
     gameContainer.addEventListener("keyup", gameStart);
-}
+}*/
 //Desmond = setInterval( welcome, 200);
 
 function finalReport() {
