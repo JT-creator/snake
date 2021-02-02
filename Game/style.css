@@ -1,9 +1,9 @@
 body {
-    background-image: linear-gradient(to left, #CF4848, #FF9696, #CF4848);
+    background-image: linear-gradient(to left, #EA894A, #FFDBC1, #EA894A);
 }
 
 #top {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(198, 0, 1);
     margin: 1.5% 11%;
     border-radius: 15px;
 }

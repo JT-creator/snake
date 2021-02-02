@@ -47,7 +47,7 @@ let command_center = {
         if( Math.abs(y1-y0) > Math.abs(x1-x0) ) return;
         if( Math.abs(x1-x0) < minReactDistForTouch ) return;
 
-        if( x1-x0 > 0 ) command_center.num++;
+        if( x1-x0 < 0 ) command_center.num++;
         else command_center.num--;
 
         if( command_center.num > 4 ) command_center.num = 4;
