@@ -1,4 +1,7 @@
 
+let upLast = document.createElement("img");
+upLast.setAttribute("src", "../Game/wel/up.jpg");
+
 let wel_up_img = [], wel_down_img = [];
 if( true )
 {
@@ -9,7 +12,7 @@ if( true )
         wel_up_img.push(img);
     }
 
-    for(let i=0; i<=1; i++)
+    for(let i=0; i<=3; i++)
     {
         let img = document.createElement("img");
         img.setAttribute("src", "../Game/wel/cover_bott"+i+".jpg");
@@ -86,7 +89,9 @@ for(let i=0; i<=40; i++)
 let creditLow_barImg = document.createElement("img");
 creditLow_barImg.src = "../Game/wel/creditlow_bar.jpg"
 let certificateImg = document.createElement("img");
-certificateImg.src = "../Game/wel/hkust_1.png";
+certificateImg.src = "../Game/wel/hkust_2.png";
+let certificateImg2 = document.createElement("img");
+certificateImg2.src = "../Game/wel/hkust_1.png";
 let badImg = document.createElement("img");
 badImg.src = "../Game/wel/bad.jpg";
 let QRImg = document.createElement("img");

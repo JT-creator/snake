@@ -173,6 +173,6 @@ class GreatFood extends Food {
         ctx.stroke();
         ctx.lineWidth = 2;*/
         ctx.fillStyle = "#FBCC21";
-        ctx.fillRect(bWid + 10,bHei * bRows+220,(FoodLastTime - this.counting)/FoodLastTime * 12*bWid, 20);
+        ctx.fillRect(bWid + 10,bHei * bRows+210,(FoodLastTime - this.counting)/FoodLastTime * 12*bWid, 20);
     }
 }

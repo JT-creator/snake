@@ -1,6 +1,15 @@
 let hahaInter, readyInter;
 let cover_end = false;
 //let Desmond;
+let hintsUp = [], hintsDown = [], num_hints;
+num_hints = 7;
+hintsUp.push("Hall7 的小夥伴"); hintsDown.push("認得我嗎？");
+hintsUp.push("想解鎖隱藏結局？"); hintsDown.push("嘗試在爆4前提下獲得最多學分");
+hintsUp.push("滑動操作的手勢"); hintsDown.push("只有在擡起手後才會生效");
+hintsUp.push("如果不在乎cga"); hintsDown.push("會有怎樣的結局呢？");
+hintsUp.push("遊戲一旦開始"); hintsDown.push("頁面滑動將會禁用");
+hintsUp.push("成為民藝坊的會員"); hintsDown.push("總能得到意想不到的福利！");
+hintsUp.push("不要錯過A++"); hintsDown.push("因為教這門可的Prof真的很贊");
 
 function get_touch_x(e) {
     if (window.navigator.msPointerEnabled) return controls.touchEndX = e.pageX;
@@ -59,7 +68,7 @@ let command_center = {
             ctx.clearRect(0,0, canvas.getAttribute("width"), canvas.getAttribute("height") );
             let i = command_center.num;
             ctx.drawImage(wel_up_img[i], 0, 0, bWid*bCols, bHei*bRows);
-            ctx.drawImage(wel_down_img[ Math.min(i, 1) ], 0, bHei*bRows, bWid*bCols, 300);
+            ctx.drawImage(wel_down_img[i], 0, bHei*bRows, bWid*bCols, 300);
         }
     },
 
@@ -75,15 +84,19 @@ let command_center = {
 }
 
 function readyGame() {
-    let num_hints = 1;
     gameContainer.removeEventListener("touchstart", helperx);
 
     gameContainer.removeEventListener("touchend", helpery);
 
     ctx.fillStyle = "#E9E9E9";
     ctx.fillRect(0,0, canvas.getAttribute("width"), canvas.getAttribute("height") );
-    let i = Math.floor( Math.random()*num_hints ) + 3;
-    ctx.drawImage(readyImg[i], 0, bHei*bRows, bWid*bCols, 300);
+    ctx.drawImage(readyImg[3], 0, bHei*bRows, bWid*bCols, 300);
+
+    ctx.fillStyle = "black";
+    ctx.font = "35px Comic Sans MS";
+    let ii = Math.floor(Math.random()*num_hints);
+    ctx.fillText( hintsUp[ ii ], 100, bRows*bHei+50 );
+    ctx.fillText( hintsDown[ ii ], 160, bRows*bHei+100 );
 
     command_center.ready_count = 0;
     readyInter = setInterval( command_center.renderLight,900);
@@ -160,6 +173,7 @@ function welcome() {
 //Desmond = setInterval( welcome, 200);
 
 function finalReport() {
+    //if( topDog.showing ) return;
     clearInterval(hahaInter);
     clearMainCanvas()
     /*let img = new Image;
@@ -193,17 +207,16 @@ function finalReport() {
         if(gaming.endreson==="selfeat") ctx.drawImage(badImg, 0, bHei*bRows, 410, 300);
         else ctx.drawImage(creditLow_barImg, 0, bHei*bRows, 410, 300);
         ctx.drawImage(QRImg, 410, bHei*bRows, 290, 290);
-
-        ctx.font="60px Comic Sans MS";
-        ctx.fillStyle = "black";
-        ctx.fillText("點擊屏幕復讀", 250, bRows*bHei-20 );
     }
 
     //player.renderScore();
 
     if( gaming.endreson === "selfeat" || player.credit<RequiredCredit ) {
         //console.log( __imgSrc );
-        gameContainer.addEventListener("touchend", () => { window.location.href = window.location.href;} );
+        jumpIntervalInLast = setInterval(failure, 2000 );
+    }
+    else {
+        jumpIntervalInLast = setInterval(succeed, 2000 );
     }
 
 }
@@ -221,7 +234,7 @@ let topDog = {
         if( topDog.i > 251 ) {
             clearInterval( topDog.inter );
             topDog.showing = false;
-            finalReport();
+            hahaInter = setInterval( finalReport, 100);
         }
     }
 
@@ -231,7 +244,7 @@ function congrante() {
     musicTopDog.play();
     topDog.showing = true;
     topDog.inter = setInterval( topDog.nextStep, 20);
-    hahaInter = setInterval( finalReport, 100);
+    //hahaInter = setInterval( finalReport, 100);
 }
 
 let endReportJump;
