@@ -8,6 +8,8 @@ function generateFood()
     let ret;
     //random type
     let seed = Math.floor( Math.random()*7 ) + 1;
+    if( possibilityDrop && seed === 5 ) seed = 6;
+
     switch( seed )
     {
         case 1: case 2: case 5:

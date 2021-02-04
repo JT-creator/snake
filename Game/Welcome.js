@@ -2,11 +2,16 @@ let hahaInter, readyInter;
 let cover_end = false;
 //let Desmond;
 let hintsUp = [], hintsDown = [], num_hints;
-num_hints = 7;
+num_hints = 12;
 hintsUp.push("Hall7 的小夥伴"); hintsDown.push("認得我嗎？");
+hintsUp.push("Hall7 的小夥伴"); hintsDown.push("認得我嗎？");
+hintsUp.push("想解鎖隱藏結局？"); hintsDown.push("嘗試在爆4前提下獲得最多學分");
 hintsUp.push("想解鎖隱藏結局？"); hintsDown.push("嘗試在爆4前提下獲得最多學分");
 hintsUp.push("滑動操作的手勢"); hintsDown.push("只有在擡起手後才會生效");
 hintsUp.push("如果不在乎cga"); hintsDown.push("會有怎樣的結局呢？");
+hintsUp.push("如果不在乎cga"); hintsDown.push("會有怎樣的結局呢？");
+hintsUp.push("只為了爆4選課？"); hintsDown.push("這樣可能無法畢業");
+hintsUp.push("只為了爆4選課？"); hintsDown.push("這樣可能無法畢業");
 hintsUp.push("遊戲一旦開始"); hintsDown.push("頁面滑動將會禁用");
 hintsUp.push("成為民藝坊的會員"); hintsDown.push("總能得到意想不到的福利！");
 hintsUp.push("不要錯過A++"); hintsDown.push("因為教這門可的Prof真的很贊");
@@ -56,6 +61,7 @@ let command_center = {
         if( Math.abs(y1-y0) > Math.abs(x1-x0) ) return;
         if( Math.abs(x1-x0) < minReactDistForTouch ) return;
 
+        moved = true;
         if( x1-x0 < 0 ) command_center.num++;
         else command_center.num--;
 
@@ -102,22 +108,53 @@ function readyGame() {
     readyInter = setInterval( command_center.renderLight,900);
 }
 
+function errPrint() {
+    if(moved) return;
+    clearInterval( startInterval );
+    console.log("hahere");
+    ctx.font = "50px Comic Sans MS";
+    ctx.fillText("我們遇到了一個問題", 100, 800);
+    ctx.font = "30px Comic Sans MS";
+    ctx.fillText("請選擇對自己", 50, 900);
+    ctx.fillStyle = "red";
+    ctx.fillText("所在區域友好的網站", 240, 900);
+    ctx.fillStyle = "black";
+    ctx.fillText("進行遊戲", 520, 900);
+
+    ctx.fillText("或者嘗試刷新", 50, 950);
+
+    ctx.drawImage(wel_up_img[0], 0, 0, bWid*bCols, bHei*bRows);
+    ctx.drawImage(wel_down_img[0], 0, bHei*bRows, bWid*bCols, 300);
+}
+
 let loadingItem = {
     i : 0,
     inter : 0,
     render : function () {
-        if( loadingItem.i>=90 ) { clearInterval( loadingItem.inter ); command_center.init();}
-        ctx.clearRect(0,0, canvas.getAttribute("width"), canvas.getAttribute("height") );
-        loadingItem.i += 7;
-        ctx.font = "30px Comic Sans MS"
-        ctx.fillText("loading... "+loadingItem.i.toString()+"%", 100, 400);
-        ctx.fillText("This may take up to 10 seconds", 100, 500);
-        ctx.fillText("Refresh the page if failed", 100, 600);
+        if( loadingItem.i>=95 ) {
+            clearInterval( loadingItem.inter );
+            ctx.font = "30px Comic Sans MS";
+            ctx.fillText("loading... "+loadingItem.i.toString()+"%", 100, 400);
+            ctx.fillText("This may take up to 10 seconds", 100, 500);
+            ctx.fillText("Refresh the page", 100, 600);
+
+            startInterval = setInterval(errPrint, 5000);
+            command_center.init();
+        }
+        else
+        {
+            ctx.clearRect(0,0, canvas.getAttribute("width"), canvas.getAttribute("height") );
+            loadingItem.i += 7;
+            ctx.font = "30px Comic Sans MS"
+            ctx.fillText("loading... "+loadingItem.i.toString()+"%", 100, 400);
+            ctx.fillText("This may take up to 10 seconds", 100, 500);
+            ctx.fillText("Refresh the page if failed", 100, 600);
+        }
     }
 }
 
 function loading() {
-    loadingItem.inter = setInterval( loadingItem.render, 100 );
+    loadingItem.inter = setInterval( loadingItem.render, 200 );
 }
 loading();
 
@@ -213,7 +250,7 @@ function finalReport() {
 
     if( gaming.endreson === "selfeat" || player.credit<RequiredCredit ) {
         //console.log( __imgSrc );
-        jumpIntervalInLast = setInterval(failure, 2000 );
+        jumpIntervalInLast = setInterval(failure, 3000 );
     }
     else {
         jumpIntervalInLast = setInterval(succeed, 2000 );

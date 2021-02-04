@@ -17,12 +17,13 @@ const minReactDistForTouch = 30;
 
 const RequiredCredit = 120;
 
-let jumpIntervalInLast;
+let jumpIntervalInLast, startInterval, moved=false;
 
 let graph = []; //graph[row][col]
 //  x=0: nothing    x>0: snake  x<0: food
 let timeNode = 0;
 let timeWarning = false;
+let possibilityDrop = false;
 
 let player = {
     credit : 0,
