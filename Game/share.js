@@ -5,7 +5,7 @@ function failure() {
     ctx.fillStyle = "#D0D0D0";
     ctx.fillRect(150, bRows*bHei-90, 400, 80 );
 
-    ctx.font="60px Comic Sans MS";
+    ctx.font="60px Verdana";
     ctx.fillStyle = "black";
     ctx.fillText("點擊屏幕復讀", 170, bRows*bHei-20 );
 

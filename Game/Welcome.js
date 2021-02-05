@@ -99,7 +99,7 @@ function readyGame() {
     ctx.drawImage(readyImg[3], 0, bHei*bRows, bWid*bCols, 300);
 
     ctx.fillStyle = "black";
-    ctx.font = "35px Comic Sans MS";
+    ctx.font = "35px Verdana";
     let ii = Math.floor(Math.random()*num_hints);
     ctx.fillText( hintsUp[ ii ], 100, bRows*bHei+50 );
     ctx.fillText( hintsDown[ ii ], 160, bRows*bHei+100 );
@@ -112,9 +112,9 @@ function errPrint() {
     if(moved) return;
     clearInterval( startInterval );
     console.log("hahere");
-    ctx.font = "50px Comic Sans MS";
+    ctx.font = "50px Verdana";
     ctx.fillText("我們遇到了一個問題", 100, 800);
-    ctx.font = "30px Comic Sans MS";
+    ctx.font = "30px Verdana";
     ctx.fillText("請選擇對自己", 50, 900);
     ctx.fillStyle = "red";
     ctx.fillText("所在區域友好的網站", 240, 900);
