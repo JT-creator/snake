@@ -13,18 +13,38 @@ function failure() {
 }
 
 function reprint() {
+    transcriptUp.end();
+
     ctx.drawImage(certificateImg2, 0, 716, bWid*bCols, 512);
     ctx.font = "50px Arial";
     ctx.fillStyle = "black";
     ctx.fillText( player.gpa.toFixed(3).toString(),185, 979);
     ctx.fillText( player.credit.toString(),245, 1037 );
 
-    ctx.drawImage(QRImg, 430, 960, 250, 250);
+    ctx.drawImage(QRImg, 470, 1000, 200, 200);
+}
+
+let transcriptUp = {
+    interval : 0,
+    ii : 0,
+    start : function() {
+        transcriptUp.interval = setInterval( transcriptUp.print1, 500);
+    },
+    end : function() {
+        clearInterval( transcriptUp.interval );
+    },
+    print1 : function() {
+        console.log(transcriptUp.ii);
+      if(transcriptUp.ii === 0) ctx.drawImage(upLast, 300, bRows*bHei-70, 125, 70 );
+      else ctx.drawImage(upLast2, 300, bRows*bHei-70, 125, 70 );
+
+        transcriptUp.ii = (transcriptUp.ii+1)%2;
+    }
 }
 
 function succeed() {
     clearInterval( jumpIntervalInLast );
 
-    ctx.drawImage(upLast, 300, bRows*bHei-70, 125, 70 );
+    transcriptUp.start();
     gameContainer.addEventListener("touchend", reprint );
 }
