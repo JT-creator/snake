@@ -1,5 +1,5 @@
 body {
-    background-image: linear-gradient(to left, #EA894A, #FFDBC1, #EA894A);
+    /*background-image: linear-gradient(to left, #EA894A, #FFDBC1, #EA894A);*/
 }
 
 #top {
@@ -17,6 +17,7 @@ body {
 #footer {
     position: fixed;
     bottom: 0;
+    right: 0;
     width: 100%;
     z-index: -1;
 }

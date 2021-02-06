@@ -16,10 +16,11 @@ function reprint() {
     transcriptUp.end();
 
     ctx.drawImage(certificateImg2, 0, 716, bWid*bCols, 512);
-    ctx.font = "50px Arial";
+    ctx.font = "47px Arial";
     ctx.fillStyle = "black";
     ctx.fillText( player.gpa.toFixed(3).toString(),185, 979);
-    ctx.fillText( player.credit.toString(),245, 1037 );
+    ctx.fillText( player.credit.toString(),245, 1039 );
+    if( player.gpa>=4.0 ) ctx.drawImage(thumbImg, 310, 900, 100, 100);
 
     ctx.drawImage(QRImg, 470, 1000, 200, 200);
 }
