@@ -184,6 +184,8 @@ function gameEnd() {
     clearInterval( gaming.interval2 );
     clearInterval( reportTime.inter );
 
+    controls.loseConsole();
+
     if( gaming.endreson === "selfeat" ) {
         let grd = ctx.createLinearGradient(snake.posHeadC * bWid, snake.posHeadR*bHei, snake.posHeadC * bWid + bWid, snake.posHeadR*bHei + bHei);
         grd.addColorStop(0, "red");

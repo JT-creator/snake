@@ -1,6 +1,6 @@
 console.log("clock here");
 const GamingSpanMin = 0//2; //min
-const GamingSpanSec = 0//50;//sec
+const GamingSpanSec = 5//50;//sec
 
 let clock = {
     startTime : new Date(),

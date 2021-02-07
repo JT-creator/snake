@@ -232,6 +232,9 @@ let snake = {
 
 var gameContainer = document.querySelector(".game-container");
 let controls = {
+    funStart : 0,
+    funMove : 0,
+    funEnd : 0,
     touchStartX : 0,
     touchStartY : 0,
     touchEndX : 0,
@@ -287,7 +290,7 @@ let controls = {
         window.addEventListener("keydown", function(e) { controls.keyReact(e.keyCode); });
         //window.addEventListener("keyup", function(e) { });
         //touches
-        gameContainer.addEventListener("touchstart", function (e) {
+        gameContainer.addEventListener("touchstart", controls.funStart = function (e) {
 
             if ((!window.navigator.msPointerEnabled && e.touches.length > 1) || e.targetTouches.length > 1) return;
 
@@ -303,11 +306,11 @@ let controls = {
             e.preventDefault();
         });
 
-        gameContainer.addEventListener("touchmove", function (e) {
+        gameContainer.addEventListener("touchmove", controls.funMove = function (e) {
             e.preventDefault();
         });
 
-        gameContainer.addEventListener("touchend", function (e) {
+        gameContainer.addEventListener("touchend", controls.funEnd = function (e) {
             //controls.touchEndX = e.pageX; controls.touchEndY = e.pageY;
             if ((!window.navigator.msPointerEnabled && e.touches.length > 0) || e.targetTouches.length > 0) return;
 
@@ -322,6 +325,11 @@ let controls = {
             controls.touchReact();
         });
     },
+    loseConsole : function () {
+        gameContainer.removeEventListener("touchstart", controls.funStart);
+        gameContainer.removeEventListener("touchmove", controls.funMove);
+        gameContainer.removeEventListener("touchend", controls.funEnd);
+    }
     //button
    /* buttonReactUp() { controls.keyReact(38); },
     buttonReactDown() { controls.keyReact(40); },
