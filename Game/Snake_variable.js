@@ -29,7 +29,7 @@ let player = {
     credit : 0,
     gpa : 0,
     total_cga : 0,
-    name : "下方可更改",
+    name : "下方可更改名字",
     nameLength: 13,
 
     renderScore() {

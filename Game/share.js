@@ -25,7 +25,7 @@ function reprint() {
     console.log(player.nameLength);
     ctx.fillText( player.gpa.toFixed(3).toString(),185, 1019);
     ctx.fillText( player.credit.toString(),245, 1079 );
-    if( player.gpa>=4.0 ) ctx.drawImage(thumbImg, 310, 900, 100, 100);
+    if( player.gpa>=4.0 ) ctx.drawImage(thumbImg, 330, 970, 100, 100);
 
     ctx.drawImage(QRImg, 470, 1000, 200, 200);
     //if(player.name === "下方可更改") swal("1","頁面下方可修改姓名噢");
