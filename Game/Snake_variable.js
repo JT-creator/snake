@@ -15,7 +15,7 @@ const FoodFlashingTime = 50;
 const GreateAppearTime = 1000;
 const minReactDistForTouch = 30;
 
-const RequiredCredit = 0//120;
+const RequiredCredit = 120;
 
 let jumpIntervalInLast, startInterval, moved=false;
 
