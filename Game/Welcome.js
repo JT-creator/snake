@@ -128,15 +128,11 @@ function errPrint() {
 }
 
 let loadingItem = {
-    i : 0,
+    i : -1,
     inter : 0,
     render : function () {
-        if( loadingItem.i>=95 ) {
+        if( loadingItem.i>=5 ) {
             clearInterval( loadingItem.inter );
-            ctx.font = "30px Comic Sans MS";
-            ctx.fillText("loading... "+loadingItem.i.toString()+"%", 100, 400);
-            ctx.fillText("This may take up to 10 seconds", 100, 500);
-            ctx.fillText("Refresh the page", 100, 600);
 
             startInterval = setInterval(errPrint, 5000);
             command_center.init();
@@ -144,17 +140,14 @@ let loadingItem = {
         else
         {
             ctx.clearRect(0,0, canvas.getAttribute("width"), canvas.getAttribute("height") );
-            loadingItem.i += 3;
-            ctx.font = "30px Comic Sans MS";
-            ctx.fillText("loading... "+loadingItem.i.toString()+"%", 100, 400);
-            ctx.fillText("This may take up to 10 seconds", 100, 500);
-            ctx.fillText("Refresh the page if failed", 100, 600);
+            loadingItem.i += 1;
+            ctx.drawImage(preloadImg[loadingItem.i%3], 8, 0, 684, 1200);
         }
     }
 }
 
 function loading() {
-    loadingItem.inter = setInterval( loadingItem.render, 70 );
+    loadingItem.inter = setInterval( loadingItem.render, 1000 );
 }
 loading();
 

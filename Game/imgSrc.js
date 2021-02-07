@@ -1,4 +1,12 @@
 
+let preloadImg = [];
+for(let i=0; i<=2; i++)
+{
+    let img = document.createElement("img");
+    img.setAttribute("src", "../Game/preload/gamepreload"+i+".jpg");
+    preloadImg.push(img);
+}
+
 let noticeNameImg = [];
 for(let i=0; i<=1; i++)
 {
