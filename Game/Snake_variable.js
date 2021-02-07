@@ -29,7 +29,7 @@ let player = {
     credit : 0,
     gpa : 0,
     total_cga : 0,
-    name : "Anonymous Dog",
+    name : "下方可更改",
     nameLength: 13,
 
     renderScore() {
@@ -46,18 +46,18 @@ let player = {
     refreshName() {
         let temp = document.getElementById("playerName").value;
         if( playerNameLength(temp) === 0 ) {
-            alert("請填寫名字！");
+            swal("請填寫名字噢！");
             return;
         }
         if(playerNameLength(temp) >=17 ) {
-            alert("名字長度應小於17字節！");
+            swal("名字長度應小於17字節噢！");
             return;
         }
 
         player.name = temp;
         player.nameLength = playerNameLength(temp);
         if(transcriptUp.isEnd) reprint();
-        else alert("已修改，展開成績單後名字可見");
+        else swal("已修改,展開成績單後名字可見噢","","success");
     }
 }
 

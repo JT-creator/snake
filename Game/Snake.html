@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="style.css">
     <title>CFAS Snake</title>
     <link rel="../Game/wel/logoT.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="../Game/alert/sweetalert.css">
+    <script type="text/javascript" src="../Game/alert/sweetalert-dev.js"></script>
 </head>
 <body> <!--style="background-image: url('../Game/wel/backG.jpg');"-->
     <section id="top" style="z-index: 0;">
@@ -26,12 +28,12 @@
         <script src="Welcome.js"></script>
     </div>
 
-    <div style="height: 70px"></div>
+    <div style="height: 20px"></div>
     <div id="interact" style="z-index: 0;">
         <form onkeydown="if(event.keyCode==13){return false;}">
             <label for="playerName" style="font-size: 35px; font-weight: bold" id="playerName_label">請叫我:</label>
             <br>
-            <input type="text" id="playerName" placeholder="Anonymous Dog" style="font-size: 30px; height:50px; background-color: #fbf1e5;" minlength="17">
+            <input type="text" id="playerName" placeholder="NAME" style="font-size: 30px; height:50px; background-color: #fbf1e5;" minlength="17">
             <br>
             <input type="button" value="就這樣!" onclick="player.refreshName();" style="font-size: 35px; background-color: #fbf1e5;" id="playerName_button">
         </form>
@@ -48,6 +50,7 @@
 
     <!--<footer id="foot"><p>haha<br>h<br>g<br></p></footer>-->
     <img src="../Game/wel/bac/bGround.png" id="footer">
+
 
    </body>
    </html>

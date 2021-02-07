@@ -285,7 +285,14 @@ let topDog = {
 }
 
 function congrante() {
-    ctx.drawImage(noticeNameImg, 0, bHei*bRows, bWid*bCols, 300);
+    let ran = Math.floor( Math.random()*2 );
+    ctx.drawImage(noticeNameImg[ran], 0, bHei*bRows, bWid*bCols, 300);
+
+    ctx.fillStyle="black";
+    ctx.font="500 40px Arial";
+    ctx.fillText("可在下方更改姓名", 15, bHei*bRows+70 );
+    ctx.fillText("制作自己的成績單噢!", 45, bHei*bRows+130 );
+
     controlPlayerName(false);
     musicTopDog.play();
     topDog.showing = true;

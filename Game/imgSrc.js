@@ -1,5 +1,11 @@
-let noticeNameImg = document.createElement("img");
-noticeNameImg.setAttribute("src", "../Game/wel/noticeName.jpg")
+
+let noticeNameImg = [];
+for(let i=0; i<=1; i++)
+{
+    let img = document.createElement("img");
+    img.setAttribute("src","../Game/wel/noticeName"+i+".jpg")
+    noticeNameImg.push(img);
+}
 
 let upLast = document.createElement("img");
 upLast.setAttribute("src", "../Game/wel/up.jpg");
