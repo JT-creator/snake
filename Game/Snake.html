@@ -8,14 +8,13 @@
 </head>
 <body> <!--style="background-image: url('../Game/wel/backG.jpg');"-->
     <section id="top" style="z-index: 0;">
-        <a href="https://cfas.su.ust.hk/">
         <img src="../Game/wel/MinYi.jpg" alt="Study Dog">
-        </a>
     </section>
 
     <div id="Game_window"  class="game-container">
         <canvas id="Canvas_main" width="700" height="1228" style="background-color: white; border:6px solid #f0cda7; display: block; margin: 0 auto; width:83vw; z-index: 0;"></canvas>
 
+        <script src="hide.js"></script>
         <script src="imgSrc.js"></script>
         <script src="Snake_variable.js"></script>
         <script src="share.js"></script>
@@ -25,6 +24,18 @@
         <script src="Food.js"></script>
         <script src="Snake_function.js"></script>
         <script src="Welcome.js"></script>
+    </div>
+
+    <div style="height: 70px"></div>
+    <div id="interact" style="z-index: 0;">
+        <form onkeydown="if(event.keyCode==13){return false;}">
+            <label for="playerName" style="font-size: 35px; font-weight: bold" id="playerName_label">請叫我:</label>
+            <br>
+            <input type="text" id="playerName" placeholder="Anonymous Dog" style="font-size: 30px; height:50px; background-color: #fbf1e5;" minlength="17">
+            <br>
+            <input type="button" value="就這樣!" onclick="player.refreshName();" style="font-size: 35px; background-color: #fbf1e5;" id="playerName_button">
+        </form>
+        <script>controlPlayerName(true);</script>
     </div>
     <!--
        <div style="text-align:center;width:480px;">

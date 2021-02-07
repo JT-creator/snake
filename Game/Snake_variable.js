@@ -15,7 +15,7 @@ const FoodFlashingTime = 50;
 const GreateAppearTime = 1000;
 const minReactDistForTouch = 30;
 
-const RequiredCredit = 120;
+const RequiredCredit = 0//120;
 
 let jumpIntervalInLast, startInterval, moved=false;
 
@@ -29,7 +29,8 @@ let player = {
     credit : 0,
     gpa : 0,
     total_cga : 0,
-    name : "Anonymous Snake",
+    name : "Anonymous Dog",
+    nameLength: 13,
 
     renderScore() {
         ctx.font = "30px Comic Sans MS";
@@ -41,6 +42,22 @@ let player = {
         ctx.fillText( player.credit.toString() + "/" + RequiredCredit.toString(), bWid * 9+10, bHei * bRows+70+40 );
 
         if( player.gpa >= 4.0 ) ctx.drawImage(thumbImg, bWid * 2+100, bHei * bRows+40, 2*bWid, 2*bWid);
+    },
+    refreshName() {
+        let temp = document.getElementById("playerName").value;
+        if( playerNameLength(temp) === 0 ) {
+            alert("請填寫名字！");
+            return;
+        }
+        if(playerNameLength(temp) >=17 ) {
+            alert("名字長度應小於17字節！");
+            return;
+        }
+
+        player.name = temp;
+        player.nameLength = playerNameLength(temp);
+        if(transcriptUp.isEnd) reprint();
+        else alert("已修改，展開成績單後名字可見");
     }
 }
 

@@ -145,7 +145,7 @@ let loadingItem = {
         {
             ctx.clearRect(0,0, canvas.getAttribute("width"), canvas.getAttribute("height") );
             loadingItem.i += 3;
-            ctx.font = "30px Comic Sans MS"
+            ctx.font = "30px Comic Sans MS";
             ctx.fillText("loading... "+loadingItem.i.toString()+"%", 100, 400);
             ctx.fillText("This may take up to 10 seconds", 100, 500);
             ctx.fillText("Refresh the page if failed", 100, 600);
@@ -259,6 +259,7 @@ function finalReport() {
 }
 
 let topDog = {
+    once: true,
     showing : false,
     i : 0,
     inter : 0,
@@ -269,15 +270,23 @@ let topDog = {
         topDog.i++;
         console.log("at top dog: "+topDog.i)
         if( topDog.i > 251 ) {
-            clearInterval( topDog.inter );
-            topDog.showing = false;
-            hahaInter = setInterval( finalReport, 100);
+            if(!topDog.once) {
+                clearInterval( topDog.inter );
+                topDog.showing = false;
+                hahaInter = setInterval( finalReport, 100);
+            }
+            else{
+                topDog.once = false;
+                topDog.i = 1;
+            }
         }
     }
 
 }
 
 function congrante() {
+    ctx.drawImage(noticeNameImg, 0, bHei*bRows, bWid*bCols, 300);
+    controlPlayerName(false);
     musicTopDog.play();
     topDog.showing = true;
     topDog.inter = setInterval( topDog.nextStep, 20);

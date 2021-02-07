@@ -1,6 +1,6 @@
 console.log("clock here");
-const GamingSpanMin = 2; //min
-const GamingSpanSec = 50;//sec
+const GamingSpanMin = 0//2; //min
+const GamingSpanSec = 0//50;//sec
 
 let clock = {
     startTime : new Date(),
@@ -31,7 +31,7 @@ let clock = {
         //if( leftMin===0 && leftSec===30 ) this.flag1 = true; ////color Test
         if( leftMin===0 && leftSec===30 ) musicTime.play();
         if( leftMin===0 && leftSec===30 ) {timeWarning = true;}
-        if( leftMin===0 && leftSec===15 ) possibilityDrop = true;
+        if( leftMin===0 && leftSec===20 ) possibilityDrop = true;
         ctx.fillText(   leftMin.toString() + "min " + leftSec.toString() + "sec", bWid * 7+10, bHei * bRows+180 );
         if( leftMin <= 0 && leftSec <= 0 ) gameEnd();
         if( leftMin < 0 ) gameEnd();

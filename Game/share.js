@@ -14,18 +14,23 @@ function failure() {
 
 function reprint() {
     transcriptUp.end();
+    transcriptUp.isEnd = true;
 
     ctx.drawImage(certificateImg2, 0, 716, bWid*bCols, 512);
     ctx.font = "47px Arial";
     ctx.fillStyle = "black";
-    ctx.fillText( player.gpa.toFixed(3).toString(),185, 979);
-    ctx.fillText( player.credit.toString(),245, 1039 );
+    ctx.fillText( player.name, 50+ 190-(20+45*player.nameLength-1)/3.8, 945 );
+    console.log(50+ 190-(24+47*player.nameLength-1)/5 );
+    console.log(player.nameLength);
+    ctx.fillText( player.gpa.toFixed(3).toString(),185, 1019);
+    ctx.fillText( player.credit.toString(),245, 1079 );
     if( player.gpa>=4.0 ) ctx.drawImage(thumbImg, 310, 900, 100, 100);
 
     ctx.drawImage(QRImg, 470, 1000, 200, 200);
 }
 
 let transcriptUp = {
+    isEnd: false,
     interval : 0,
     ii : 0,
     start : function() {

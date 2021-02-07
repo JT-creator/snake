@@ -1,3 +1,5 @@
+let noticeNameImg = document.createElement("img");
+noticeNameImg.setAttribute("src", "../Game/wel/noticeName.jpg")
 
 let upLast = document.createElement("img");
 upLast.setAttribute("src", "../Game/wel/up.jpg");

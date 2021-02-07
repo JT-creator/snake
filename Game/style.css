@@ -1,4 +1,5 @@
 body {
+    margin: 0;
     /*background-image: linear-gradient(to left, #EA894A, #FFDBC1, #EA894A);*/
 }
 
@@ -21,6 +22,33 @@ body {
     width: 100%;
     z-index: -1;
 }
+
+#interact {
+    /*margin-left: 17%;*/
+    display: flex;
+    justify-content:center;
+    width: 100vw;
+    font-size: 40px;
+    /*align-items: center;*/
+}
+
+#interact form label {
+   /* display: block;*/
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#interact form input {
+    /*display: block;*/
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    border: 0;
+    outline: 0;
+    margin-bottom: 10px;
+}
+
 /*
 #footer {
     background-image: url('../Game/wel/backFooter1.jpg');
