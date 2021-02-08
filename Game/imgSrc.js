@@ -8,7 +8,7 @@ for(let i=0; i<=2; i++)
 }
 
 let noticeNameImg = [];
-for(let i=0; i<=1; i++)
+for(let i=0; i<=2; i++)
 {
     let img = document.createElement("img");
     img.setAttribute("src","../Game/wel/noticeName"+i+".jpg")
@@ -125,6 +125,7 @@ let finalBaoseed1 = document.createElement("img");
 let finalBaoseed2 = document.createElement("img");
 let finalGandi = document.createElement("img");
 let finalPass = document.createElement("img");
+let pityImg = document.createElement("img");
 finalSelfeat1.src = "../Game/wel/selfeat1.jpg";
 finalSelfeat2.src = "../Game/wel/selfeat2.jpg";
 finalCreditLow.src = "../Game/wel/creditlow.jpg";
@@ -133,6 +134,8 @@ finalBaoseed1.src = "../Game/wel/baoseed1.jpg";
 finalBaoseed2.src = "../Game/wel/baoseed2.jpg";
 finalGandi.src = "../Game/wel/gandi.jpg";
 finalPass.src = "../Game/wel/pass.jpg";
+pityImg.src = "../Game/wel/pitty.png";
+
 function loadEndReport() {
     for(let i=0; i<=251; i++)
     {

@@ -210,7 +210,7 @@ function finalReport() {
     img.onload = function() { ctx.drawImage(img, 0, 0, bCols*bWid, bRows*bHei); }
     img.src = __imgSrc;*/
 
-    if( gaming.endreson === "selfeat" ) {
+    if( gaming.endreson === "selfeat" && player.credit<RequiredCredit ) {
         if( Math.floor( Math.random() * 2 ) === 0 ) ctx.drawImage(finalSelfeat1, 0, 0, bCols*bWid, bRows*bHei);
         else ctx.drawImage(finalSelfeat2, 0, 0, bCols*bWid, bRows*bHei);
     }
@@ -221,9 +221,10 @@ function finalReport() {
         else ctx.drawImage(finalBaoseed2, 0, 0, bCols*bWid, bRows*bHei);
     }
     else if( player.credit > 1.2 * RequiredCredit ) ctx.drawImage(finalGandi, 0, 0, bCols*bWid, bRows*bHei);
+    else if( player.gpa > 3.9 ) ctx.drawImage(pityImg, 0, 0, bCols*bWid, bRows*bHei);
     else ctx.drawImage(finalPass, 0, 0, bCols*bWid, bRows*bHei);
 
-    if( player.credit >= RequiredCredit && gaming.endreson!=="selfeat" ){
+    if( player.credit >= RequiredCredit ){
         ctx.drawImage(certificateImg, 0, bHei*bRows, 410, 300);
 
         ctx.font = "30px Arial";
@@ -241,7 +242,7 @@ function finalReport() {
 
     //player.renderScore();
 
-    if( gaming.endreson === "selfeat" || player.credit<RequiredCredit ) {
+    if( player.credit<RequiredCredit ) {
         //console.log( __imgSrc );
         jumpIntervalInLast = setInterval(failure, 3000 );
     }
@@ -278,7 +279,7 @@ let topDog = {
 }
 
 function congrante() {
-    let ran = Math.floor( Math.random()*2 );
+    let ran = Math.floor( Math.random()*3 );
     ctx.drawImage(noticeNameImg[ran], 0, bHei*bRows, bWid*bCols, 300);
 
     ctx.fillStyle="black";
@@ -303,7 +304,7 @@ function releaseEndReport() {
     clearInterval( endReportJump );
     console.log("At EndReport");
 
-    if( player.credit >= RequiredCredit && gaming.endreson!=="selfeat" ) {
+    if( player.credit >= RequiredCredit ) {
         topDog.i = 0;
         congrante();
     }
