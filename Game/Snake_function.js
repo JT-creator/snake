@@ -1,3 +1,12 @@
+/*
+function debug() {
+    for(let r=0; r<bRows; r++)
+        for(let c=0; c<bCols; c++){
+            ctx.fillStyle = "black";
+            ctx.font="20px Console";
+            ctx.fillText(graph[r][c].toString(), (c+0.1)*bWid, (r+0.7)*bHei);
+        }
+}*/
 
 function renderBoarders() { //create Block boarders
     //if( clock.flag1 ) ctx.fillStyle = "#FAC7D1";
@@ -110,8 +119,8 @@ function updateData()
             for(let c=0; c<bCols; c++)
                 if( graph[r][c]>0 ) graph[r][c]--;
 
-        snake.eatSelf();
-        graph[ snake.posHeadR ][ snake.posHeadC ] = snake.length; //head move in graph[][]
+        if( !snake.eatSelf() )
+            graph[ snake.posHeadR ][ snake.posHeadC ] = snake.length; //head move in graph[][]
 
     }
 
@@ -154,6 +163,8 @@ function updateRender()
     if( timeNode%4 === 0 ) clock.renderMe_JudgeEnd();
 
     if( gaming.ended ) gameEnd();
+
+    //if( timeNode%moveTime === 0 ) debug();
 }
 
 function clearMainCanvas() {
@@ -192,6 +203,7 @@ function gameEnd() {
         grd.addColorStop(1, "black");
         ctx.fillStyle = grd;
         ctx.fillRect( snake.posHeadC * bWid, snake.posHeadR*bHei, bWid, bHei);
+        //debug();
     }
     endReport();
 }

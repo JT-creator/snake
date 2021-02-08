@@ -69,6 +69,79 @@ let gaming = {
     endreson : "timeout"
 }
 
+function abs(arg) {
+    return (arg>0)? arg : -arg;
+}
+
+function renderSnakeBlock(r, c) {
+    let ur, uc;
+    ur = ((r-1)+bRows)%bRows;
+    uc = c;
+    let dr, dc;
+    dr = ((r+1)+bRows)%bRows;
+    dc = c;
+    let lr, lc;
+    lr = r;
+    lc = ((c-1)+bCols)%bCols;
+    let rr, rc;
+    rr = r;
+    rc = ((c+1)+bCols)%bCols;
+
+    let grd = ctx.createRadialGradient((c + 0.5)*bWid,(r + 0.5)*bHei,0.1*bWid,(c + 0.5)*bWid,(r + 0.5)*bHei,1.2*bWid);
+    grd.addColorStop(0,"#E3A408");
+    grd.addColorStop(1,"white");
+    ctx.fillStyle = grd;
+
+    if( graph[r][c] === 1 ) {
+        ctx.beginPath();
+        ctx.arc((c+0.5)*bWid, (r+0.5)*bHei, 0.43*bWid, 0, 2 * Math.PI);
+        ctx.fill();
+        if( graph[ur][uc]===2 )
+            ctx.fillRect( (c+0.07)*bWid, r*bHei, 0.86*bWid, 0.5*bHei );
+        if( graph[dr][dc]===2 )
+            ctx.fillRect((c+0.07)*bWid, (r+0.5)*bHei, 0.86*bWid, 0.5*bHei );
+        if( graph[lr][lc]===2 )
+            ctx.fillRect( c*bWid, (r+0.07)*bHei, bWid*0.5, 0.86*bHei );
+        if( graph[rr][rc]===2 )
+            ctx.fillRect( (c+0.5)*bWid, (r+0.07)*bHei, bWid*0.5, 0.86*bHei );
+    }
+    else{
+        if( abs(graph[ur][uc]-graph[r][c])===1 && abs(graph[dr][dc]-graph[r][c])===1 )
+            ctx.fillRect((c+0.07)*bWid, r*bHei, bWid*0.86, bHei );
+        else if( abs(graph[lr][lc]-graph[r][c])===1 && abs(graph[rr][rc]-graph[r][c])===1 )
+            ctx.fillRect(c*bWid, (r+0.07)*bHei, bWid, bHei*0.86 );
+        else if( abs(graph[lr][lc]-graph[r][c])===1 && abs(graph[dr][dc]-graph[r][c])===1 ) {
+            ctx.fillRect(c*bWid, (r+0.07)*bHei, 0.5*bWid, 0.86*bHei );
+            ctx.fillRect( (c+0.07)*bWid, (r+0.5)*bHei, 0.86*bWid, 0.5*bHei );
+            ctx.beginPath();
+            ctx.arc((c+0.5)*bWid, (r+0.5)*bHei, 0.43*bWid, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+        else if( abs(graph[lr][lc]-graph[r][c])===1 && abs(graph[ur][uc]-graph[r][c])===1 ) {
+            ctx.fillRect(c*bWid, (r+0.07)*bHei, 0.5*bWid, 0.86*bHei );
+            ctx.fillRect((c+0.07)*bWid, r*bHei, 0.86*bWid, 0.5*bHei );
+            ctx.beginPath();
+            ctx.arc((c+0.5)*bWid, (r+0.5)*bHei, 0.43*bWid, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+        else if( abs(graph[rr][rc]-graph[r][c])===1 && abs(graph[ur][uc]-graph[r][c])===1 ) {
+            ctx.fillRect((c+0.07)*bWid, r*bHei, 0.86*bWid, 0.5*bHei );
+            ctx.fillRect((c+0.5)*bWid, (r+0.07)*bHei, 0.5*bWid, 0.86*bHei );
+            ctx.beginPath();
+            ctx.arc((c+0.5)*bWid, (r+0.5)*bHei, 0.43*bWid, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+        else if( abs(graph[rr][rc]-graph[r][c])===1 && abs(graph[dr][dc]-graph[r][c])===1 ) {
+            ctx.fillRect((c+0.07)*bWid, (r+0.5)*bHei, 0.86*bWid, 0.5*bHei );
+            ctx.fillRect((c+0.5)*bWid, (r+0.07)*bHei, 0.5*bWid, 0.86*bHei );
+            ctx.beginPath();
+            ctx.arc((c+0.5)*bWid, (r+0.5)*bHei, 0.43*bWid, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+    }
+
+}
+
 
 let snake = {
     length : initLength,
@@ -86,13 +159,15 @@ let snake = {
                 }
                 else if( graph[r][c] > 0 ) {
                     //gradiant
+                    renderSnakeBlock(r, c);
+                   /*@！！
                     let grd = ctx.createRadialGradient((c + 0.5)*bWid,(r + 0.5)*bHei,0.1*bWid,(c + 0.5)*bWid,(r + 0.5)*bHei,1.3*bWid);
                     grd.addColorStop(0,"#E3A408");
                     grd.addColorStop(1,"white");
                     ctx.fillStyle = grd;
                     //ctx.fillStyle = "black";
                     ctx.fillRect((c + 0.5*rowConst)*bWid, (r + 0.5*colConst)*bHei, bWid, bHei);
-
+*/
                    /* ctx.strokeStyle = "white";
                     ctx.strokeWidth = 10;
                     ctx.strokeRect((c + 0.1)*bWid, (r + 0.1)*bHei, 0.8*bWid, 0.8*bHei);*/
@@ -114,11 +189,16 @@ let snake = {
             case "left": oc = (oc + 1 + bCols)%bCols; break;
             case "right": oc = (oc - 1 + bCols)%bCols; break;
         }
-        let grd = ctx.createRadialGradient((oc + 0.5)*bWid,(or + 0.5)*bHei,0.1*bWid,(oc + 0.5)*bWid,(or + 0.5)*bHei,1.1*bWid);
+
+        /*let grd = ctx.createRadialGradient((oc + 0.5)*bWid,(or + 0.5)*bHei,0.1*bWid,(oc + 0.5)*bWid,(or + 0.5)*bHei,1.1*bWid);
         grd.addColorStop(0,"#E3A408");
         grd.addColorStop(1,"white");
-        ctx.fillStyle = grd;
-        if( graph[or][oc] > 0 ) ctx.fillRect(oc*bWid, or*bHei, bWid, bHei);
+        ctx.fillStyle = grd;*/
+        if( graph[or][oc] > 0 ) {
+            ctx.fillStyle = "white";
+            ctx.fillRect(oc*bWid, or*bHei, bWid, bHei)
+            renderSnakeBlock(or, oc);
+        }
 
         //ctx.fillStyle = "#E34C00";
         switch( snake.renderHeading )
@@ -195,7 +275,9 @@ let snake = {
         if (graph[snake.posHeadR][snake.posHeadC] > 0) {
             gaming.endreson = "selfeat";
             gaming.ended = true;
+            return true;
         }
+        return false;
     }, //self-eat
     eatFood() { //food eat
         if (graph[snake.posHeadR][snake.posHeadC] < 0) { //yes FOOD!!
@@ -221,6 +303,10 @@ let snake = {
             for (let ind = 0; ind < Foods.length; ind++)
                 if (Foods[ind].credit === 5)
                     if (Math.abs(snake.posHeadR - Foods[ind].row) === 1 && Math.abs(snake.posHeadC - Foods[ind].col) === 1) {
+                        for (let r = 0; r < bRows; r++)
+                            for (let c = 0; c < bCols; c++)
+                                if (graph[r][c] > 0) graph[r][c]++;
+
                         reportCheck.restart();
                         Foods[ind].addScore();
                         Foods[ind].vanish();
