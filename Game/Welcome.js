@@ -221,7 +221,7 @@ function finalReport() {
         else { ctx.drawImage(finalBaoseed2, 0, 0, bCols*bWid, bRows*bHei); ending = finalBaoseed2;}
     }
     else if( player.credit > 1.2 * RequiredCredit ) { ctx.drawImage(finalGandi, 0, 0, bCols*bWid, bRows*bHei); ending = finalGandi;}
-    else if( player.gpa > 3.95 ) { ctx.drawImage(pityImg, 0, 0, bCols*bWid, bRows*bHei); ending = pityImg;}
+    else if( player.gpa > 3.9 ) { ctx.drawImage(pityImg, 0, 0, bCols*bWid, bRows*bHei); ending = pityImg;}
     else { ctx.drawImage(finalPass, 0, 0, bCols*bWid, bRows*bHei); ending = finalPass;}
 
     if( player.credit >= RequiredCredit ){
