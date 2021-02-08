@@ -12,9 +12,41 @@ function failure() {
     gameContainer.addEventListener("touchend", () => { window.location.href = window.location.href;} );
 }
 
-function reprint() {
-    gameContainer.removeEventListener("touchend", reprint );
-    transcriptUp.end();
+let ad = {
+    num : 500,
+    isClosed : false,
+
+    print() {
+        ctx.drawImage(adImg, 0, 419, 700, 297);
+        ad.refreshCircle();
+    },
+    refreshCircle() {
+        ctx.strokeStyle = "#f7e6cc";
+        ctx.lineWidth = 7;
+        ctx.beginPath();
+        ctx.arc(40, 450, 30,  0, 2 * Math.PI);
+        ctx.stroke();
+
+        ctx.strokeStyle = "#f5958e";
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.arc(40, 450, 30, -0.5 * Math.PI, ad.num/500* 2*Math.PI - 0.5*Math.PI);
+        ctx.stroke();
+
+        ad.num--;
+        if( ad.num>0 && !ad.isClosed ) setTimeout( ad.refreshCircle, 10);
+        if( ad.num === 0 ) ad.close();
+    },
+    close() {
+        ctx.drawImage(ending, 0, 0, bCols*bWid, bRows*bHei);
+        reprintTrans();
+        ad.isClosed = true;
+    },
+}
+
+function reprintTrans() {
+    //gameContainer.removeEventListener("touchend", reprint );
+    //transcriptUp.end();
     transcriptUp.isEnd = true;
 
     ctx.drawImage(certificateImg2, 0, 716, bWid*bCols, 512);
@@ -33,9 +65,10 @@ function reprint() {
 
 let transcriptUp = {
     isEnd: false,
-    interval : 0,
-    ii : 0,
-    start : function() {
+    //interval : 0,
+    //ii : 0,
+    //manual, auto now
+    /*start : function() {
         transcriptUp.interval = setInterval( transcriptUp.print1, 500);
     },
     end : function() {
@@ -47,12 +80,15 @@ let transcriptUp = {
       else ctx.drawImage(upLast2, 300, bRows*bHei-70, 125, 70 );
 
         transcriptUp.ii = (transcriptUp.ii+1)%2;
-    }
+    }*/
 }
 
 function succeed() {
     clearInterval( jumpIntervalInLast );
 
-    transcriptUp.start();
-    gameContainer.addEventListener("touchend", reprint );
+    reprintTrans();
+    ad.print();
+    player.autoNameRefresh();
+    //transcriptUp.start();
+    //gameContainer.addEventListener("touchend", reprint );
 }

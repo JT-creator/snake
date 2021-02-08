@@ -2,6 +2,7 @@ let defaultWid = 704;
 var canvas = document.getElementById("Canvas_main");
 var ctx = canvas.getContext("2d");
 
+let ending;
 //ctx.fillStyle = "red"; ctx.fillRect(0,0,12,12 );
 const bRows = 29;
 const bCols = 22;
@@ -56,8 +57,26 @@ let player = {
 
         player.name = temp;
         player.nameLength = playerNameLength(temp);
-        if(transcriptUp.isEnd) reprint();
-        else swal("已修改,展開成績單後名字可見噢","","success");
+        reprintTrans();
+        swal("已修改,成績單上名字可見噢","","success");
+    },
+    autoNameRefresh() {
+        let temp = document.getElementById("playerName").value;
+
+        if( playerNameLength(temp) === 0 ) {
+            setTimeout( player.autoNameRefresh, 1000 );
+            return;
+        }
+        if( playerNameLength(temp) >=17 ) {
+            setTimeout( player.autoNameRefresh, 1000 );
+            return;
+        }
+
+        player.name = temp;
+        player.nameLength = playerNameLength(temp);
+        if(transcriptUp.isEnd) reprintTrans();
+
+        setTimeout( player.autoNameRefresh, 3000 );
     }
 }
 

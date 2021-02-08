@@ -211,18 +211,18 @@ function finalReport() {
     img.src = __imgSrc;*/
 
     if( gaming.endreson === "selfeat" && player.credit<RequiredCredit ) {
-        if( Math.floor( Math.random() * 2 ) === 0 ) ctx.drawImage(finalSelfeat1, 0, 0, bCols*bWid, bRows*bHei);
-        else ctx.drawImage(finalSelfeat2, 0, 0, bCols*bWid, bRows*bHei);
+        if( Math.floor( Math.random() * 2 ) === 0 ) { ctx.drawImage(finalSelfeat1, 0, 0, bCols*bWid, bRows*bHei); ending = finalSelfeat1; }
+        else { ctx.drawImage(finalSelfeat2, 0, 0, bCols*bWid, bRows*bHei); ending = finalSelfeat2;}
     }
-    else if( player.credit < RequiredCredit ) ctx.drawImage(finalCreditLow, 0, 0, bCols*bWid, bRows*bHei);
-    else if( player.credit > 1.12*RequiredCredit && player.gpa >= 4.0 ) ctx.drawImage(finalCreditGod, 0, 0, bCols*bWid, bRows*bHei);
+    else if( player.credit < RequiredCredit ) { ctx.drawImage(finalCreditLow, 0, 0, bCols*bWid, bRows*bHei); ending = finalCreditLow;}
+    else if( player.credit > 1.12*RequiredCredit && player.gpa >= 4.0 ) { ctx.drawImage(finalCreditGod, 0, 0, bCols*bWid, bRows*bHei); ending = finalCreditGod;}
     else if( player.gpa >= 4.0 ) {
-        if( Math.floor( Math.random() * 2 ) === 0 ) ctx.drawImage(finalBaoseed1, 0, 0, bCols*bWid, bRows*bHei);
-        else ctx.drawImage(finalBaoseed2, 0, 0, bCols*bWid, bRows*bHei);
+        if( Math.floor( Math.random() * 2 ) === 0 ) { ctx.drawImage(finalBaoseed1, 0, 0, bCols*bWid, bRows*bHei); ending = finalBaoseed1;}
+        else { ctx.drawImage(finalBaoseed2, 0, 0, bCols*bWid, bRows*bHei); ending = finalBaoseed2;}
     }
-    else if( player.credit > 1.2 * RequiredCredit ) ctx.drawImage(finalGandi, 0, 0, bCols*bWid, bRows*bHei);
-    else if( player.gpa > 3.9 ) ctx.drawImage(pityImg, 0, 0, bCols*bWid, bRows*bHei);
-    else ctx.drawImage(finalPass, 0, 0, bCols*bWid, bRows*bHei);
+    else if( player.credit > 1.2 * RequiredCredit ) { ctx.drawImage(finalGandi, 0, 0, bCols*bWid, bRows*bHei); ending = finalGandi;}
+    else if( player.gpa > 3.95 ) { ctx.drawImage(pityImg, 0, 0, bCols*bWid, bRows*bHei); ending = pityImg;}
+    else { ctx.drawImage(finalPass, 0, 0, bCols*bWid, bRows*bHei); ending = finalPass;}
 
     if( player.credit >= RequiredCredit ){
         ctx.drawImage(certificateImg, 0, bHei*bRows, 410, 300);
@@ -247,7 +247,7 @@ function finalReport() {
         jumpIntervalInLast = setInterval(failure, 3000 );
     }
     else {
-        jumpIntervalInLast = setInterval(succeed, 2000 );
+        jumpIntervalInLast = setInterval(succeed, 3000 );
     }
 
 }

@@ -1,3 +1,5 @@
+let adImg = document.createElement("img");
+adImg.setAttribute("src", "../Game/wel/ad.png")
 
 let preloadImg = [];
 for(let i=0; i<=2; i++)
@@ -14,11 +16,6 @@ for(let i=0; i<=2; i++)
     img.setAttribute("src","../Game/wel/noticeName"+i+".jpg")
     noticeNameImg.push(img);
 }
-
-let upLast = document.createElement("img");
-upLast.setAttribute("src", "../Game/wel/up.jpg");
-let upLast2 = document.createElement("img");
-upLast2.setAttribute("src", "../Game/wel/up2.jpg");
 
 let wel_up_img = [], wel_down_img = [];
 if( true )
