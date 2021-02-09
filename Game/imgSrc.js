@@ -9,6 +9,9 @@ for(let i=0; i<=2; i++)
     preloadImg.push(img);
 }
 
+let warningImg = document.createElement("img");
+warningImg.src = "../Game/wel/fail.png";
+
 let noticeNameImg = [];
 for(let i=0; i<=2; i++)
 {

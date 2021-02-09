@@ -14,7 +14,7 @@ const FoodAppearTime = 120;
 const FoodLastTime = 360;
 const FoodFlashingTime = 50;
 const GreateAppearTime = 1000;
-const minReactDistForTouch = 30;
+const minReactDistForTouch = 40;
 
 const RequiredCredit = 120;
 
@@ -337,6 +337,7 @@ let snake = {
 
 var gameContainer = document.querySelector(".game-container");
 let controls = {
+    pleaseReact : false,
     funStart : 0,
     funMove : 0,
     funEnd : 0,
@@ -369,6 +370,7 @@ let controls = {
         }
     },
     touchReact() {
+        if( !controls.pleaseReact ) return;
         let mDist;
         mDist = Math.abs( controls.touchStartX - controls.touchEndX ) + Math.abs(controls.touchStartY - controls.touchEndY );
         if( mDist < controls.minReactDist ) return;
@@ -387,6 +389,7 @@ let controls = {
             else key = 37;
         }
 
+        controls.pleaseReact = false;
         controls.keyReact( key );
     },
 
@@ -406,12 +409,19 @@ let controls = {
                 controls.touchStartX = e.touches[0].clientX;
                 controls.touchStartY = e.touches[0].clientY;
             }
-
+            controls.pleaseReact = true;
             //controls.touchStartX = e.pageX; controls.touchStartY = e.pageY;
             e.preventDefault();
         });
 
         gameContainer.addEventListener("touchmove", controls.funMove = function (e) {
+            controls.touchEndX = e.touches[0].clientX;
+            controls.touchEndY = e.touches[0].clientY;
+            //console.log("------------------");
+            //console.log( controls.touchStartX, controls.touchStartY);
+            //console.log( controls.touchEndX, controls.touchEndY);
+
+            controls.touchReact();
             e.preventDefault();
         });
 

@@ -2,6 +2,14 @@ function failure() {
     console.log("Fail");
     clearInterval( jumpIntervalInLast );
 
+    controlPlayerName(false);
+    reprintTrans();
+    transcriptUp.isEnd = true;
+    ad.print();
+    player.autoNameRefresh();
+}
+/*
+function reTake() {
     ctx.fillStyle = "#D0D0D0";
     ctx.fillRect(150, bRows*bHei-90, 400, 80 );
 
@@ -10,7 +18,7 @@ function failure() {
     ctx.fillText("點擊屏幕復讀", 170, bRows*bHei-20 );
 
     gameContainer.addEventListener("touchend", () => { window.location.href = window.location.href;} );
-}
+}*/
 
 let ad = {
     num : 500,
@@ -49,7 +57,8 @@ function reprintTrans() {
     //transcriptUp.end();
     transcriptUp.isEnd = true;
 
-    ctx.drawImage(certificateImg2, 0, 716, bWid*bCols, 512);
+    if( player.credit>=RequiredCredit ) ctx.drawImage(certificateImg2, 0, 716, bWid*bCols, 512);
+    else ctx.drawImage(warningImg, 0, 716, bWid*bCols, 512);
     ctx.font = "normal 47px Arial";
     ctx.fillStyle = "black";
     ctx.fillText( player.name, 50+ 190-(20+45*player.nameLength-1)/3.8, 945 );
