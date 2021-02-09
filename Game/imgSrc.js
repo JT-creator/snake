@@ -110,7 +110,7 @@ certificateImg2.src = "../Game/wel/hkust_1.png";
 let badImg = document.createElement("img");
 badImg.src = "../Game/wel/bad.jpg";
 let QRImg = document.createElement("img");
-QRImg.src = "../Game/wel/QR.jpg";
+QRImg.src = "../Game/wel/QR.png";
 
 let topDogImg = [];
 let miniCount = 0;
