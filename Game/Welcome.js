@@ -2,12 +2,11 @@ let hahaInter, readyInter;
 let cover_end = false;
 //let Desmond;
 let hintsUp = [], hintsDown = [], num_hints;
-num_hints = 12;
+num_hints = 11;
 hintsUp.push("Hall7 的小夥伴"); hintsDown.push("認得我嗎？");
 hintsUp.push("Hall7 的小夥伴"); hintsDown.push("認得我嗎？");
 hintsUp.push("想解鎖隱藏結局？"); hintsDown.push("嘗試在爆4前提下獲得最多學分");
 hintsUp.push("想解鎖隱藏結局？"); hintsDown.push("嘗試在爆4前提下獲得最多學分");
-hintsUp.push("滑動操作的手勢"); hintsDown.push("只有在擡起手後才會生效");
 hintsUp.push("如果不在乎cga"); hintsDown.push("會有怎樣的結局呢？");
 hintsUp.push("如果不在乎cga"); hintsDown.push("會有怎樣的結局呢？");
 hintsUp.push("只為了爆4選課？"); hintsDown.push("這樣可能無法畢業");
@@ -15,6 +14,7 @@ hintsUp.push("只為了爆4選課？"); hintsDown.push("這樣可能無法畢業
 hintsUp.push("遊戲一旦開始"); hintsDown.push("頁面滑動將會禁用");
 hintsUp.push("成為民藝坊的會員"); hintsDown.push("總能得到意想不到的福利！");
 hintsUp.push("不要錯過A++"); hintsDown.push("因為教這門可的Prof真的很贊");
+hintsUp.push("滑動操作的手勢"); hintsDown.push("只有在擡起手後才會生效");
 
 function get_touch_x(e) {
     if (window.navigator.msPointerEnabled) return controls.touchEndX = e.pageX;
