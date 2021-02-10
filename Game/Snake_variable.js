@@ -415,8 +415,14 @@ let controls = {
         });
 
         gameContainer.addEventListener("touchmove", controls.funMove = function (e) {
-            controls.touchEndX = e.touches[0].clientX;
-            controls.touchEndY = e.touches[0].clientY;
+
+            if (window.navigator.msPointerEnabled) {
+                controls.touchEndX = e.pageX;
+                controls.touchEndY = e.pageY;
+            } else {
+                controls.touchEndX = e.changedTouches[0].clientX;
+                controls.touchEndY = e.changedTouches[0].clientY;
+            }
             //console.log("------------------");
             //console.log( controls.touchStartX, controls.touchStartY);
             //console.log( controls.touchEndX, controls.touchEndY);
