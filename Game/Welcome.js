@@ -128,7 +128,7 @@ function errPrint() {
 }
 
 let loadingItem = {
-    i : -1,
+    i : 1,
     inter : 0,
     render : function () {
         if( loadingItem.i>=5 ) {
@@ -147,7 +147,7 @@ let loadingItem = {
 }
 
 function loading() {
-    loadingItem.inter = setInterval( loadingItem.render, 1000 );
+    loadingItem.inter = setInterval( loadingItem.render, 800 );
 }
 loading();
 
